@@ -1,5 +1,6 @@
 package enums;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum FamilyStatus {
@@ -17,7 +18,10 @@ public enum FamilyStatus {
 		this.setEnglishName(englishName);
 		this.setKnnValue(knnValue);
 	}
-
+	
+	 public int getId() {
+		return ordinal();
+	}
 	 public String getHebrewName() {
 		return hebrewName;
 	}
