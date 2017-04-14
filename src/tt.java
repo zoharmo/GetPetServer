@@ -26,6 +26,8 @@ public class tt {
 		System.out.println(s);
 		
 		System.out.println("test after first upload to github");
+		System.out.println("test 2");
+
 
 	}
 }
