@@ -25,7 +25,7 @@ public class tt {
 		String s = new ObjectMapper().writeValueAsString(FamilyStatus.values());
 		System.out.println(s);
 		
-		System.out.println("test commmmmmit");
+		System.out.println("test after first upload to github");
 
 	}
 }
