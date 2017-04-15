@@ -2,14 +2,13 @@ import java.util.ArrayList;
 
 public class User {
 
-	String userName;
-	String password;
-	String emailAdress;
-	String firstName;
-	String secondName;
-	int phoneNumber;
-	
-	ArrayList<Dog> dogsForAdoption = new ArrayList<>();
+	private String userName;
+	private String password;
+	private String emailAdress;
+	private String firstName;
+	private String secondName;
+	private int phoneNumber;
+	private ArrayList<Dog> dogsForAdoption = new ArrayList<>();
 
 	public String getUserName() {
 		return userName;

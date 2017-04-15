@@ -3,14 +3,13 @@ import java.util.ArrayList;
 import enums.*;
 
 public class Dog {
-
-	String name;
-	String color;
-	int age;
-	Area area;
-	User owner;
-	ArrayList<String> beerd = new ArrayList<>();
-
+	
+	private String name;
+	private String color;
+	private int age;
+	private Area area;
+	private User owner;
+	private ArrayList<String> beerd = new ArrayList<>();
 
 	public String getName() {
 		return name;
@@ -36,7 +35,6 @@ public class Dog {
 	public void setAge(int age) {
 		this.age = age;
 	}
-
 	public Area getArea() {
 		return area;
 	}
