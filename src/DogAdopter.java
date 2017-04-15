@@ -9,4 +9,11 @@ public class DogAdopter {
 	HouseType houseType;
 	DogCare dogCare;
 	Animals otherAnimals;
+	Location dogLocation;
+	Availability availability;
+	HealthStatus healthStatus;
+	FamilyType familyType;
+	Relation relationToProperty;
+	Hobbies familyHobbies;
+	Features familyFeature;
 }
