@@ -9,6 +9,7 @@ public class Dog {
 	private int age;
 	private Area area;
 	private User owner;
+	private DogBreeds dogBreed;
 	private ArrayList<String> beerd = new ArrayList<>();
 
 	public String getName() {
@@ -40,6 +41,12 @@ public class Dog {
 	}
 	public void setArea(Area area) {
 		this.area = area;
+	}
+	public DogBreeds getDogBreed() {
+		return dogBreed;
+	}
+	public void setDogBreed(DogBreeds dogBreed) {
+		this.dogBreed = dogBreed;
 	}
 	public ArrayList<String> getBeerd() {
 		return beerd;

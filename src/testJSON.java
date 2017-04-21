@@ -6,6 +6,7 @@ import enums.Animals;
 import enums.Area;
 import enums.Availability;
 import enums.CommunityType;
+import enums.DogBreeds;
 import enums.DogCare;
 import enums.FamilyStatus;
 import enums.FamilyType;
@@ -35,5 +36,6 @@ public class testJSON {
 		System.out.println(new ObjectMapper().writeValueAsString(Relation.values()));
 		System.out.println(new ObjectMapper().writeValueAsString(Hobbies.values()));
 		System.out.println(new ObjectMapper().writeValueAsString(Features.values()));
+		System.out.println(new ObjectMapper().writeValueAsString(DogBreeds.values()));
 	}
 }
