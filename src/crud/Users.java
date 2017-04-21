@@ -7,13 +7,20 @@ import entities.User;
 
 public class Users {
 
-	public void saveUser(User user) {
-		mongoManger.mongoOperation.save(user);
+	public static int save(User user) {
+		if(!doesUserNameExist(user.getUserName())){
+			mongoManger.mongoOperation.save(user);
+			return 0;}
+		else{
+			return -1;
+		}
 	}
-	
-	public void getUserByUserName(String username) {
+	public static User getUserByUserName(String username) {
 		Query searchUserQuery = new Query(Criteria.where("userName").is(username));
-		User savedUser = mongoManger.mongoOperation.findOne(searchUserQuery, User.class);
+		return(mongoManger.mongoOperation.findOne(searchUserQuery, User.class));
 	}
 	
+	public static boolean doesUserNameExist(String username) {
+		return(getUserByUserName(username) != null);
+	}	
 }

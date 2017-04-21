@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import config.SpringMongoConfig;
 import crud.Dogs;
+import crud.Users;
 import entities.Dog;
-import entities.User;
+import entities.*;
 import enums.*;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +25,6 @@ public class testJSON {
 	
 	public static void main(String[] args) throws JsonProcessingException {
 		
-		System.out.println(new ObjectMapper().writeValueAsString(Gender.values()));
 /*		System.out.println(new ObjectMapper().writeValueAsString(Animals.values()));
 		System.out.println(new ObjectMapper().writeValueAsString(Area.values()));
 		System.out.println(new ObjectMapper().writeValueAsString(CommunityType.values()));
@@ -39,22 +38,13 @@ public class testJSON {
 		System.out.println(new ObjectMapper().writeValueAsString(Relation.values()));
 		System.out.println(new ObjectMapper().writeValueAsString(Hobbies.values()));
 		System.out.println(new ObjectMapper().writeValueAsString(Features.values()));
+<<<<<<< HEAD
 */
-		Dog d = new Dog();
-		d.setAge(2);
-		d.setArea(Area.CENTER);
-		ArrayList<String> a = new ArrayList<>();
-		a.add("1");
-		a.add("2");
-
-		d.setBeerd(a);
-		d.setColor("black");
-		d.setDescription("lovely dog");
-		d.setName("pt");
-		d.setPicture("11".getBytes());
-		System.out.println(d.toString());
-		//Dogs.saveDog(d);
-		System.out.println(new ObjectMapper().writeValueAsString(d));
-		System.out.println(Dogs.getDogByBreed("pitbull"));
+			
+	User u = new User();
+	u.setUserName("mor");
+	u.setPassword("123");
+	Users.save(u);
+	System.out.println(Users.getUserByUserName("mor"));
 	}
 }

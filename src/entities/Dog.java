@@ -15,11 +15,11 @@ public class Dog {
 	private int age;
 	private Area area;
 	private User owner;
+	private ArrayList<DogBreeds> breed = new ArrayList<>();
+	
 	private byte[] picture;
 	private String description;
 	
-	private ArrayList<String> beerd = new ArrayList<>();
-
 	public String getId() {
 		return id;
 	}
@@ -56,12 +56,8 @@ public class Dog {
 	public void setArea(Area area) {
 		this.area = area;
 	}
-	public ArrayList<String> getBeerd() {
-		return beerd;
-	}
-	public void setBeerd(ArrayList<String> beerd) {
-		this.beerd = beerd;
-	}
+	
+	
 	  @Override
 	    public String toString() {
 		  return "Dog: id :" + id + " name: " + name;
@@ -80,5 +76,11 @@ public class Dog {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-
+		public ArrayList<DogBreeds> getBreed() {
+			return breed;
+		}
+		public void setBreed(ArrayList<DogBreeds> breed) {
+			this.breed = breed;
+		}
+		
 }
