@@ -1,16 +1,31 @@
+package entities;
 import java.util.ArrayList;
 
-import enums.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import enums.*;
+@Document(collection = "dogs")
 public class Dog {
 	
+	@Id
+	private String id;
 	private String name;
 	private String color;
 	private int age;
 	private Area area;
 	private User owner;
+	private byte[] picture;
+	private String description;
+	
 	private ArrayList<String> beerd = new ArrayList<>();
 
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -47,4 +62,23 @@ public class Dog {
 	public void setBeerd(ArrayList<String> beerd) {
 		this.beerd = beerd;
 	}
+	  @Override
+	    public String toString() {
+		  return "Dog: id :" + id + " name: " + name;
+	 
+	  }
+	  
+	  public byte[] getPicture() {
+			return picture;
+		}
+		public void setPicture(byte[] picture) {
+			this.picture = picture;
+		}
+		public String getDescription() {
+			return description;
+		}
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
 }

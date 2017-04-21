@@ -1,3 +1,4 @@
+package entities;
 import enums.*;
 
 public class DogAdopter {
