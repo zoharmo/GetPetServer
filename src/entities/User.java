@@ -91,21 +91,33 @@ public class User {
 	public void setUploadDogs(Map<String, ArrayList<User>> uploadDogs) {
 		this.uploadsDogs = uploadDogs;
 	}
-
+	
+	public void addUploadDog(String dogId) {
+		this.uploadsDogs.put(dogId, null);
+	}
+	public int addUserToUploadDog(String dogId,User user) {
+		if (this.uploadsDogs.containsKey(dogId)){
+			this.uploadsDogs.get(dogId).add(user);
+			return 0;
+		}else{
+			System.out.println("ERROR: cant add user to upload dog list. dog is not on the list");
+			return -1;
+			}
+	}
+	
 	public ArrayList<Dog> getDogsRequests() {
 		return dogsRequest;
 	}
-	  @Override
-	    public String toString() {
-		  return "User: id :" + id + " name: " + this.firstName + " user name " + this.userName + " Dog Req: "
-				  + dogsRequest.toString() + " dog uplaods  "+ this.uploadsDogs.toString();
-	 
-	  }
+	
 
 	public void setDogsRequests(ArrayList<Dog> dogsRequests) {
 		this.dogsRequest = dogsRequests;
 	}
-
+	
+	public void AddDogsRequests(Dog dog) {
+		this.dogsRequest.add(dog);
+	}
+	
 	public DogAdopter getAdoptionDetails() {
 		return adoptionDetails;
 	}
@@ -113,5 +125,10 @@ public class User {
 	public void setAdoptionDetails(DogAdopter adoptionDetails) {
 		this.adoptionDetails = adoptionDetails;
 	}
-
+	 @Override
+	public String toString() {
+			  return "User: id :" + id + " name: " + this.firstName + " user name " + this.userName + " Dog Req: "
+					  + dogsRequest.toString() + " dog uplaods  "+ this.uploadsDogs.toString();
+		 
+	 }
 }

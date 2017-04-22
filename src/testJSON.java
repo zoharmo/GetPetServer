@@ -41,10 +41,6 @@ public class testJSON {
 <<<<<<< HEAD
 */
 			
-	User u = new User();
-	u.setUserName("mor");
-	u.setPassword("123");
-	Users.save(u);
-	System.out.println(Users.getUserByUserName("mor"));
+	
 	}
 }
