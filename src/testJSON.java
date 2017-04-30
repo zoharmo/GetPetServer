@@ -28,7 +28,8 @@ public class testJSON {
 */
 		try {
 //			URL url = new URL("http://localhost:8080/GetPet/getPetServer/GetPetServices/getDogAfterUpload");
-			URL url = new URL("http://localhost:8080/GetPet/getPetServer/GetPetServices/getDogsByAdoptionDetails");
+		//	URL url = new URL("http://localhost:8080/GetPet/getPetServer/GetPetServices/getDogsByAdoptionDetails");
+			URL url = new URL("http://localhost:8080/GetPet/getPetServer/GetPetServices/userRegistration");
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Content-Type", "application/json");

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+import crud.Users;
 import entities.Dog;
 import entities.User;
 import enums.Animals;
@@ -37,6 +38,32 @@ import enums.Relation;
 
 @Path("/GetPetServices")
 public class GetPetServices {
+	private Gson gson = new Gson();
+	
+	@POST
+    @Path("/userRegistration") 
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_HTML)
+	public String userRegistration(InputStream incomingData) {
+		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
+		User usr = gson.fromJson(in, User.class);
+		
+		if (Users.getUserByUserName(usr.getUserName()) != null){
+			return "ERROR: already exist user name " + usr.getUserName();
+		}else{
+			int returnCode = Users.save(usr);
+			if(returnCode == -1){
+				return "ERROR: problem with save user to db";}
+		}
+		return "OK";
+	}
+	
+	@GET
+    @Path("/checkUserNameValid") 
+	@Consumes(MediaType.TEXT_HTML)
+	public Boolean checkUserName(@QueryParam("userName")String userName) {
+		  return(!Users.doesUserNameExist(userName));
+	}
 	
 	@POST
     @Path("/getUserAfterRegistration") 
