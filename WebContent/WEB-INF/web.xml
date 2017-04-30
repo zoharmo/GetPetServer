@@ -5,7 +5,20 @@
 	id="WebApp_ID" version="3.1">
 
 	<display-name>GetPet</display-name>
-
+	
+	<servlet> 
+      <servlet-name>GetPetApplication</servlet-name> 
+      <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class> 
+      <init-param> 
+         <param-name>jersey.config.server.provider.packages</param-name> 
+         <!-- package of me service class --><param-value>services</param-value> 
+      </init-param> 
+   </servlet> 
+   <servlet-mapping> 
+      <servlet-name>GetPetApplication</servlet-name> 
+      <url-pattern>/getPetServer/*</url-pattern> 
+   </servlet-mapping>   
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

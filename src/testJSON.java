@@ -1,25 +1,11 @@
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import config.SpringMongoConfig;
-import crud.Dogs;
-import crud.Users;
-import entities.Dog;
-import entities.*;
-import enums.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 public class testJSON {
 
 	
@@ -40,7 +26,33 @@ public class testJSON {
 		System.out.println(new ObjectMapper().writeValueAsString(Features.values()));
 <<<<<<< HEAD
 */
+		try {
+//			URL url = new URL("http://localhost:8080/GetPet/getPetServer/GetPetServices/getDogAfterUpload");
+			URL url = new URL("http://localhost:8080/GetPet/getPetServer/GetPetServices/getDogsByAdoptionDetails");
+			URLConnection connection = url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setConnectTimeout(500000);
+			connection.setReadTimeout(500000);
+			OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+//			out.write("{'id':'1234','name':'lasi','age':3,'breed':[]}");
+			out.write("{'id':'12','userName':'barbe','firstName':'bar','secondName':'ben tolila'}");
+			out.close();
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			
+			StringBuilder s = new StringBuilder();
+			String line = null;
+			
+			while ((line = in.readLine()) != null) {
+				
+					s.append(line);
+					System.out.println(s);
+			}
+			
+			in.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	
 	}
 }
