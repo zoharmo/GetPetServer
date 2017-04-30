@@ -20,7 +20,20 @@ import com.google.gson.Gson;
 import entities.Dog;
 import entities.User;
 import enums.Animals;
+import enums.Area;
+import enums.Availability;
+import enums.CommunityType;
+import enums.DogBreeds;
+import enums.DogCare;
+import enums.FamilyStatus;
+import enums.FamilyType;
 import enums.Features;
+import enums.Gender;
+import enums.HealthStatus;
+import enums.Hobbies;
+import enums.HouseType;
+import enums.Location;
+import enums.Relation;
 
 @Path("/GetPetServices")
 public class GetPetServices {
@@ -28,7 +41,7 @@ public class GetPetServices {
 	@POST
     @Path("/getUserAfterRegistration") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
+	@Produces("application/json;charset=utf-8")
 	public String getUserAfterRegistration(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		Gson g = new Gson();
@@ -39,7 +52,7 @@ public class GetPetServices {
 	
 
 	@POST 
-    @Path("/getDogAfterUpload") 
+    @Path("/getDogAfterUpload;charset=utf-8") 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json")
 	public String getDogAfterUpload(InputStream incomingData) {
@@ -53,7 +66,7 @@ public class GetPetServices {
 	@POST 
     @Path("/getDogsByAdoptionDetails") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
+	@Produces("application/json;charset=utf-8")
 	public String getDogsByAdoptionDetails(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		Gson g = new Gson();
@@ -83,15 +96,42 @@ public class GetPetServices {
 	
 	@GET 
     @Path("/getEnumAsJson") 
-	@Produces("application/json")
+	@Produces("application/json;charset=utf-8")
 	public String getEnumAsJson(@QueryParam("enumName")String enumName) {
 		String s = new String();
 		
 		try {
 			if ("Animals".equals(enumName))
 				s = new ObjectMapper().writeValueAsString(Animals.values());
+			else if ("Area".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(Area.values());
+			else if ("Availability".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(Availability.values());
+			else if ("CommunityType".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(CommunityType.values());
+			else if ("DogBreeds".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(DogBreeds.values());
+			else if ("DogCare".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(DogCare.values());
+			else if ("FamilyStatus".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(FamilyStatus.values());
+			else if ("FamilyType".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(FamilyType.values());
 			else if ("Features".equals(enumName))
 				s = new ObjectMapper().writeValueAsString(Features.values());
+			else if ("Gender".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(Gender.values());
+			else if ("HealthStatus".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(HealthStatus.values());
+			else if ("Hobbies".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(Hobbies.values());
+			else if ("HouseType".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(HouseType.values());
+			else if ("Location".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(Location.values());
+			else if ("Relation".equals(enumName))
+				s = new ObjectMapper().writeValueAsString(Relation.values());
+			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

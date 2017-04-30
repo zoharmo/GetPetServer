@@ -15,6 +15,7 @@ public class Dog {
 	private int age;
 	private Area area;
 	private User owner;
+	private Gender gender;
 	private ArrayList<DogBreeds> breed = new ArrayList<>();
 	
 	private byte[] picture;
@@ -57,8 +58,14 @@ public class Dog {
 		this.area = area;
 	}
 	
+	public Gender getGender() {
+		return gender;
+	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 	
-	  @Override
+	@Override
 	    public String toString() {
 		  return "Dog: id :" + id + " name: " + name;
 	 
