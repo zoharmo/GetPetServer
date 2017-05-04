@@ -42,7 +42,8 @@ public enum DogBreeds {
 	AustralianTerrier("טרייר אוסטרלי","AustralianTerrier"),
 	AustrianBlackAndTanHound("כלב ציד שחור וחום אוסטרי","Austrian Black and Tan Hound"),
 	AustrianPinscher("פינצ'ר אוסטרי","Austrian Pinscher"),
-	Azawakh("אזוואק","Azawakh");
+	Azawakh("אזוואק","Azawakh"),
+	Pomeranian("פומרניאן","Pomeranian");
 	
 	private String hebrewName;
 	private String englishName;
