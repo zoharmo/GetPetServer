@@ -48,7 +48,7 @@ public class GetPetServices {
 	@POST 
     @Path("/getDogs") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("applicationB/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	public String getDogsTest(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		Gson g = new Gson();

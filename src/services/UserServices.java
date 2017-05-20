@@ -32,7 +32,6 @@ public class UserServices {
 	@POST
     @Path("/userRegistration") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
 	public void userRegistration(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User usr = gson.fromJson(in, User.class);
@@ -47,7 +46,6 @@ public class UserServices {
 	@POST
     @Path("/updateUser") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
 	public void updateUser(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User usr = gson.fromJson(in, User.class);
@@ -58,7 +56,7 @@ public class UserServices {
 	@POST
     @Path("/getUser") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
+	@Produces("application/json;charset=utf-8")
 	public String getUser(@QueryParam("userName")String userName) {
 		User usr = Users.getUserByUserName(userName);
 		try{
@@ -85,7 +83,7 @@ public class UserServices {
 	@POST
     @Path("/signIn") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
+	@Produces("application/json;charset=utf-8")
 	public String signIn(@QueryParam("userName")String userName, @QueryParam("password")String password) {
 		User user = Users.getUserByUserName(userName);
 		String s;

@@ -43,7 +43,7 @@ public class DogServices {
 	@POST 
     @Path("/getDogsByAdoptoionDetails") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("applicationB/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	public String getDogsByAdoptoionDetails(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User usr = gson.fromJson(in, User.class);
@@ -63,7 +63,7 @@ public class DogServices {
 	@POST 
     @Path("/setLikedDogs") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("applicationB/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	public void setLikedDogs(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User inputUser = gson.fromJson(in, User.class);
@@ -77,7 +77,7 @@ public class DogServices {
 	@POST 
     @Path("/adoptDog") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("applicationB/json;charset=utf-8")
+	@Produces("application/json;charset=utf-8")
 	public void adoptDog(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User user = gson.fromJson(in, User.class);
