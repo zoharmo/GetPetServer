@@ -9,10 +9,16 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import com.mongodb.MongoClient;
 
 public class SpringMongoConfig {
-
+	private boolean DB_SERVER_LOCAL = false;
 	public @Bean
 	MongoDbFactory mongoDbFactory() throws Exception {
-		return new SimpleMongoDbFactory(new MongoClient(), "getpetdb");
+		if (DB_SERVER_LOCAL){
+			return new SimpleMongoDbFactory(new MongoClient(), "getpetdb");
+		}
+		else{
+			return new SimpleMongoDbFactory(new MongoClient("mongodb://193.106.55.72:27017/"), "project72db");
+
+		}
 	}
 
 	public @Bean

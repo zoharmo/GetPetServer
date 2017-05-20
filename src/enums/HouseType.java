@@ -1,5 +1,6 @@
 package enums;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum HouseType {
@@ -28,7 +29,7 @@ public enum HouseType {
 	 public String getEnglishName() {
 		return englishName;
 	}
-
+	 @JsonIgnore
 	 public String getKnnValue() {
 		return knnValue;
 	}

@@ -25,8 +25,11 @@ public class Dogs {
 	}
 	
 	public static ArrayList<Dog> getDogByBreed(DogBreeds breed) {
-	Query query = new Query(Criteria.where("breed").in(breed));
-	return((ArrayList<Dog>) mongoManger.mongoOperation.find(query, Dog.class));
+		Query query = new Query(Criteria.where("breed").in(breed));
+		return((ArrayList<Dog>) mongoManger.mongoOperation.find(query, Dog.class));	
 	}
-
+	
+	public static void remove(Dog dog){
+		mongoManger.mongoOperation.remove(dog);
+	}
 }

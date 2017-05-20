@@ -1,5 +1,4 @@
 package entities;
-import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,15 +11,39 @@ public class Dog {
 	private String id;
 	private String name;
 	private String color;
-	private int age;
+	private Short age;
 	private Area area;
-	private User owner;
+	//@DBRef
+	//private User owner;
 	private Gender gender;
-	private ArrayList<DogBreeds> breed = new ArrayList<>();
+	private Size size;
+	private DogBreeds breed;
 	
 	private byte[] picture;
 	private String description;
-	
+	private String owenerName;
+	private String address;
+	private String phone;
+
+	public Dog() {
+		super();
+	}
+	public Dog(String name, String color, Short age, Area area, User owner, Gender gender, Size size,
+			DogBreeds breed, byte[] picture, String description, String owener, String address) {
+		super();
+		this.name = name;
+		this.color = color;
+		this.age = age;
+		this.area = area;
+		this.gender = gender;
+		this.size = size;
+		this.breed = breed;
+		this.picture = picture;
+		this.description = description;
+		this.owenerName = owener;
+		this.address = address;
+		
+	}
 	public String getId() {
 		return id;
 	}
@@ -39,16 +62,11 @@ public class Dog {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public User getOwner() {
-		return owner;
-	}
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
+
 	public int getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Short age) {
 		this.age = age;
 	}
 	public Area getArea() {
@@ -83,11 +101,36 @@ public class Dog {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		public ArrayList<DogBreeds> getBreed() {
+		public DogBreeds getBreed() {
 			return breed;
 		}
-		public void setBreed(ArrayList<DogBreeds> breed) {
+		public void setBreed(DogBreeds breed) {
 			this.breed = breed;
+		}
+		public Size getSize() {
+			return size;
+		}
+		public void setSize(Size size) {
+			this.size = size;
+		}
+		public String getOwenerName() {
+			return owenerName;
+		}
+		public void setOwenerName(String owenerName) {
+			this.owenerName = owenerName;
+		}
+		public String getAddress() {
+			return address;
+		}
+		public void setAddress(String address) {
+			this.address = address;
+		}
+		
+		public String getPhone() {
+			return phone;
+		}
+		public void setPhone(String phone) {
+			this.phone = phone;
 		}
 		
 }
