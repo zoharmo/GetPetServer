@@ -11,13 +11,13 @@ public class Dog {
 	private String id;
 	private String name;
 	private String color;
-	private Short age;
-	private Area area;
+	private Double age;
+	private int area;
 	//@DBRef
 	//private User owner;
-	private Gender gender;
-	private Size size;
-	private DogBreeds breed;
+	private int gender;
+	private int size;
+	private int breed;
 	
 	private byte[] picture;
 	private String description;
@@ -28,8 +28,8 @@ public class Dog {
 	public Dog() {
 		super();
 	}
-	public Dog(String name, String color, Short age, Area area, User owner, Gender gender, Size size,
-			DogBreeds breed, byte[] picture, String description, String owener, String address) {
+	public Dog(String name, String color, Double age, int area, User owner, int gender, int size,
+			int breed, byte[] picture, String description, String owener, String address) {
 		super();
 		this.name = name;
 		this.color = color;
@@ -63,23 +63,23 @@ public class Dog {
 		this.color = color;
 	}
 
-	public int getAge() {
+	public Double getAge() {
 		return age;
 	}
-	public void setAge(Short age) {
+	public void setAge(Double age) {
 		this.age = age;
 	}
-	public Area getArea() {
+	public int getArea() {
 		return area;
 	}
-	public void setArea(Area area) {
+	public void setArea(int area) {
 		this.area = area;
 	}
 	
-	public Gender getGender() {
+	public int getGender() {
 		return gender;
 	}
-	public void setGender(Gender gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 	
@@ -101,16 +101,16 @@ public class Dog {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		public DogBreeds getBreed() {
+		public int getBreed() {
 			return breed;
 		}
-		public void setBreed(DogBreeds breed) {
+		public void setBreed(int breed) {
 			this.breed = breed;
 		}
-		public Size getSize() {
+		public int getSize() {
 			return size;
 		}
-		public void setSize(Size size) {
+		public void setSize(int size) {
 			this.size = size;
 		}
 		public String getOwenerName() {

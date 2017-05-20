@@ -33,11 +33,17 @@ public class DogServices {
 	@POST
     @Path("/addDogForAdoption") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
-	public void addDogForAdoption(InputStream incomingData) {
+	@Produces("application/json;charset=utf-8")
+	public String addDogForAdoption(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-		Dog dog = gson.fromJson(in, Dog.class);
-		Dogs.save(dog);
+		Dog dog;
+		try{
+			dog = gson.fromJson(in, Dog.class);
+			Dogs.save(dog);
+
+		}catch (Exception e) {
+			System.out.println(e.getMessage());		}
+		return "OK";
 	}
 	
 	@POST 
