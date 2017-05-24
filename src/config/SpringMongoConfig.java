@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import com.mongodb.MongoClient;
 
 public class SpringMongoConfig {
-	private boolean DB_SERVER_LOCAL = false;
+	private boolean DB_SERVER_LOCAL = true;
 	public @Bean
 	MongoDbFactory mongoDbFactory() throws Exception {
 		if (DB_SERVER_LOCAL){

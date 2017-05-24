@@ -32,6 +32,10 @@ public class Dogs {
 	public static void remove(Dog dog){
 		mongoManger.mongoOperation.remove(dog);
 	}
+	public static void removeByDogName(String name){
+		Query query = new Query(Criteria.where("name").is(name));
+		mongoManger.mongoOperation.remove(query, Dog.class);
+	}
 	
 	public static Dog getDogByName(String name) {
 		Query query = new Query(Criteria.where("name").is(name));

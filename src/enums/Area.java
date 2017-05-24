@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Area {
-	NORTH ("צפון","north","0000"),
-	SOUTH("דרום","south","0001"),
-	CENTER("מרכז","center","0010"),
-	JERUSALEM("ירושליים והסביבה","jerusalem","0100"),
-	EILAT("אילת והסביבה","eilat","1000");
+	NORTH ("צפון","NORTH","0000"),
+	SOUTH("דרום","SOUTH","0001"),
+	CENTER("מרכז","CENTER","0010"),
+	JERUSALEM("ירושליים והסביבה","JERUSALEM","0100"),
+	EILAT("אילת והסביבה","EILAT","1000");
 
 	private String hebrewName;
 	private String englishName;

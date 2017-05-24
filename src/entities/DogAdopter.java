@@ -19,6 +19,32 @@ public class DogAdopter {
 	private Hobbies familyHobbies;
 	private Features familyFeature;
 	
+	public DogAdopter(){
+		super();
+	}
+	
+	public DogAdopter(Gender gender, int age, FamilyStatus familyStatus, CommunityType communityType, Area area,
+			HouseType houseType, DogCare dogCare, Animals otherAnimals, Location dogLocation, Availability availability,
+			HealthStatus healthStatus, FamilyType familyType, Relation relationToProperty, Hobbies familyHobbies,
+			Features familyFeature) {
+		super();
+		this.gender = gender;
+		this.age = age;
+		this.familyStatus = familyStatus;
+		this.communityType = communityType;
+		this.area = area;
+		this.houseType = houseType;
+		this.dogCare = dogCare;
+		this.otherAnimals = otherAnimals;
+		this.dogLocation = dogLocation;
+		this.availability = availability;
+		this.healthStatus = healthStatus;
+		this.familyType = familyType;
+		this.relationToProperty = relationToProperty;
+		this.familyHobbies = familyHobbies;
+		this.familyFeature = familyFeature;
+	}
+
 	public Gender getGender() {
 		return gender;
 	}

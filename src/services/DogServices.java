@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import KNN.Knn;
 import crud.Dogs;
 import crud.Users;
+import entities.Adoption;
 import entities.Dog;
 import entities.DogAdopter;
 import entities.User;
@@ -38,11 +39,13 @@ public class DogServices {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		Dog dog;
 		try{
+			//dog = objectMapper.readValue(in, Dog.class);
 			dog = gson.fromJson(in, Dog.class);
 			Dogs.save(dog);
 
 		}catch (Exception e) {
-			System.out.println(e.getMessage());		}
+			System.out.println(e.getMessage());		
+			return "ERROR: " + e.getMessage();}
 		return "OK";
 	}
 	
@@ -56,28 +59,34 @@ public class DogServices {
 		
 		DogAdopter details = usr.getAdoptionDetails();
 		ArrayList<Dog> dogs =  Knn.run(details);
-		String dogsJson;
+		String response;
 		try{
-			dogsJson = objectMapper.writeValueAsString(dogs);
+			response = objectMapper.writeValueAsString(dogs);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			dogsJson = e.getMessage();
+			response = e.getMessage();
 		}
-		return dogsJson;
+		return response;
 	}
 	
 	@POST 
-    @Path("/setLikedDogs") 
+    @Path("/likedDogs") 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public void setLikedDogs(InputStream incomingData) {
+	public String likedDogs(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
+		try{
+
 		User inputUser = gson.fromJson(in, User.class);
-		
 		User savedUser = Users.getUserByUserName(inputUser.getUserName());
 		
 		savedUser.setLikedDogs(inputUser.getLikedDogs());
-		Users.save(savedUser);	
+		Users.save(savedUser);	}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "ERROR" + e.getMessage();
+		}
+		return "OK";
 	}
 	
 	@POST 
@@ -91,5 +100,7 @@ public class DogServices {
 		Dogs.remove(user.getAdoptednDog());
 		
 		// save user details with choosen dog breed
+		Adoption adopt = new Adoption(user.getAdoptionDetails(), user.getAdoptednDog().getBreed());
+		
 	}
 }

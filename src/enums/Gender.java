@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Gender {
-	MALE("זכר","male","0"),
-	FEMALE("נקבה","female","1");
+	MALE("זכר","MALE","0"),
+	FEMALE("נקבה","FEMALE","1");
 	
 	private String hebrewName;
 	private String englishName;

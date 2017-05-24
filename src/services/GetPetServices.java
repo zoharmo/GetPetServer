@@ -1,9 +1,11 @@
 package services;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -58,21 +60,21 @@ public class GetPetServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
 	public String getDogsTest(InputStream incomingData) {
-		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
+	/*	BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		Gson g = new Gson();
 		User usr = g.fromJson(in, User.class);
 //		DogAdopter adoptionDetails = usr.getAdoptionDetails();
 		System.out.println(usr.getUserName());
 		
 		/** knn algorithm according to adoptionDetails below **/
-		
+	/*	
 		ArrayList<Dog> dogs = new ArrayList<>();
 		Dog d1 = new Dog();
 		d1.setId("1");
 		d1.setName("פו");
 		d1.setColor("Brown");
 		d1.setAge(1.5);
-		d1.setArea(Area.CENTER.getId());
+	//	d1.setArea(Area.CENTER.getId());
 		d1.setBreed(DogBreeds.Pomeranian.getId());
 		User user1 = new User("ליאו","מסי");		
 		//d1.setOwner(user1);
@@ -87,7 +89,7 @@ public class GetPetServices {
 		d2.setName("טופי");
 		d2.setColor("White");
 	//	d2.setAge(0.4);
-		d2.setArea(Area.CENTER.getId());
+		//.setArea(Area.CENTER.getId());
 		d2.setBreed(DogBreeds.BullTerrier.getId());
 		User user2 = new User("כריסטיאנו","רונלדו");		
 	//	d2.setOwner(user2);
@@ -235,8 +237,8 @@ public class GetPetServices {
 	//	d11.setSize(Size.BIG);
 		dogs.add(d11);
 		
-		String s = g.toJson(dogs);
-		return s;
+		String s = g.toJson(dogs);*/
+		return null;
 	}
 	
 	@GET 
@@ -276,6 +278,10 @@ public class GetPetServices {
 				s = new ObjectMapper().writeValueAsString(Location.values());
 			else if ("Relation".equals(enumName))
 				s = new ObjectMapper().writeValueAsString(Relation.values());
+		//	else if ("Color".equals(enumName))
+		//		s = new ObjectMapper().writeValueAsString(Color.values());
+			
+		//	Arrays.stream(Color.getClass().getEnumConstants());
 			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

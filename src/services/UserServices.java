@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import javax.print.attribute.ResolutionSyntax;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -32,25 +33,36 @@ public class UserServices {
 	@POST
     @Path("/userRegistration") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void userRegistration(InputStream incomingData) {
+	@Produces("application/json;charset=utf-8")
+	public String userRegistration(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User usr = gson.fromJson(in, User.class);
-		
-		if (Users.getUserByUserName(usr.getUserName()) != null){
-			System.out.println( "ERROR: already exist user name " + usr.getUserName());
-		}else{
-			Users.save(usr);
+		String response = "OK";
+		try{
+			Users.save(usr);			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());		
+			response = "ERROR: " + e.getMessage();
 		}
+		return response;
 	}
 
 	@POST
     @Path("/updateUser") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateUser(InputStream incomingData) {
+	@Produces("application/json;charset=utf-8")
+	public String updateUser(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User usr = gson.fromJson(in, User.class);
-		
-		Users.update(usr);
+		String response = "OK";
+
+		try{
+			Users.update(usr);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());		
+			response = "ERROR: " + e.getMessage();
+		}
+		return response;
 	}
 	
 	@POST
@@ -58,12 +70,13 @@ public class UserServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
 	public String getUser(@QueryParam("userName")String userName) {
-		User usr = Users.getUserByUserName(userName);
+		
 		try{
+			User usr = Users.getUserByUserName(userName);
 			return objectMapper.writeValueAsString(usr);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());		
-			return e.getMessage();
+			return "ERROR:" + e.getMessage();
 		}
 	}
 	

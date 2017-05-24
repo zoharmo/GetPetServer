@@ -1,7 +1,11 @@
 package entities;
 
+import java.awt.Color;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import enums.*;
 @Document(collection = "dogs")
@@ -12,12 +16,12 @@ public class Dog {
 	private String name;
 	private String color;
 	private Double age;
-	private int area;
+	private Area area;
 	//@DBRef
 	//private User owner;
-	private int gender;
-	private int size;
-	private int breed;
+	private Gender gender;
+	private Size size;
+	private DogBreeds breed;
 	
 	private byte[] picture;
 	private String description;
@@ -28,8 +32,8 @@ public class Dog {
 	public Dog() {
 		super();
 	}
-	public Dog(String name, String color, Double age, int area, User owner, int gender, int size,
-			int breed, byte[] picture, String description, String owener, String address) {
+	public Dog(String name, String color, Double age, Area area, Gender gender, Size size,
+			DogBreeds breed, byte[] picture, String description, String owener, String address) {
 		super();
 		this.name = name;
 		this.color = color;
@@ -69,24 +73,27 @@ public class Dog {
 	public void setAge(Double age) {
 		this.age = age;
 	}
-	public int getArea() {
+	public Area getArea() {
 		return area;
 	}
-	public void setArea(int area) {
+	public void setArea(Area area) {
 		this.area = area;
 	}
 	
-	public int getGender() {
+	public Gender getGender() {
 		return gender;
 	}
-	public void setGender(int gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 	
 	@Override
 	    public String toString() {
-		  return "Dog: id :" + id + " name: " + name;
-	 
+		try{
+		  return new ObjectMapper().writeValueAsString(this);	 }
+		catch (Exception e) {
+			return 	id;
+			}
 	  }
 	  
 	  public byte[] getPicture() {
@@ -101,16 +108,16 @@ public class Dog {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		public int getBreed() {
+		public DogBreeds getBreed() {
 			return breed;
 		}
-		public void setBreed(int breed) {
+		public void setBreed(DogBreeds breed) {
 			this.breed = breed;
 		}
-		public int getSize() {
+		public Size getSize() {
 			return size;
 		}
-		public void setSize(int size) {
+		public void setSize(Size size) {
 			this.size = size;
 		}
 		public String getOwenerName() {

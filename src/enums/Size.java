@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Size {
-	BIG ("גדול","big","001"),
-	MEDIUM("בינוני","medium","010"),
-	SMALL("קטן","small","100");
+	BIG ("גדול","BIG","001"),
+	MEDIUM("בינוני","MEDIUM","010"),
+	SMALL("קטן","SMALL","100");
 
 	private String hebrewName;
 	private String englishName;
