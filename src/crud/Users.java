@@ -1,14 +1,12 @@
 package crud;
-
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-
 import entities.User;
 
 public class Users {
 
 	public static void save(User user) throws Exception{
-			mongoManger.mongoOperation.save(user);
+			mongoManager.mongoOperation.save(user);
 	}
 	
 	public static void update(User user) throws Exception {
@@ -20,16 +18,16 @@ public class Users {
 				throw new Exception("not found user with user name " + user.getUserName());
 			}
 		}
-		mongoManger.mongoOperation.save(user);
+		mongoManager.mongoOperation.save(user);
 	}
 	
 	public static void remove(User user) throws Exception {
 		if (user.getId() == null){
 			user = getUserByUserName(user.getUserName()) ;
 		}
-		mongoManger.mongoOperation.remove(user);
+		mongoManager.mongoOperation.remove(user);
 	}
-	public static void removeByUsserName(String userName) throws Exception{
+	public static void removeByUserName(String userName) throws Exception{
 		User user = getUserByUserName(userName);
 		if (user != null){
 			remove(user);
@@ -37,12 +35,12 @@ public class Users {
 	}
 	public static User getUserById(String userId) throws Exception{
 		Query searchUserQuery = new Query(Criteria.where("id").is(userId));
-		return(mongoManger.mongoOperation.findOne(searchUserQuery, User.class));
+		return(mongoManager.mongoOperation.findOne(searchUserQuery, User.class));
 	}
 	
 	public static User getUserByUserName(String username){
 		Query searchUserQuery = new Query(Criteria.where("userName").is(username));
-		return(mongoManger.mongoOperation.findOne(searchUserQuery, User.class));
+		return(mongoManager.mongoOperation.findOne(searchUserQuery, User.class));
 	}
 	
 	public static boolean doesUserNameExist(String username) {

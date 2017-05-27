@@ -28,7 +28,7 @@ public class UserServices {
 	/** User Registration
 	 * check if user name dont exsit already,
 	 * save use to DB
-	 * @param user jason
+	 * @param user json
 	 * **/
 	@POST
     @Path("/userRegistration") 
@@ -39,11 +39,12 @@ public class UserServices {
 		User usr = gson.fromJson(in, User.class);
 		String response = "OK";
 		try{
-			Users.save(usr);			
+			Users.save(usr);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());		
 			response = "ERROR: " + e.getMessage();
 		}
+		System.out.println("response: " + response);
 		return response;
 	}
 

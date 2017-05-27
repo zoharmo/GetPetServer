@@ -38,34 +38,41 @@ public class DogServices {
 	public String addDogForAdoption(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		Dog dog;
+		String response;
 		try{
 			//dog = objectMapper.readValue(in, Dog.class);
-			dog = gson.fromJson(in, Dog.class);
+			dog = objectMapper.readValue(in, Dog.class);
+			System.out.println("addDogForAdoption service. input: " + gson.toJson(dog));
 			Dogs.save(dog);
-
+			response =  "OK";
 		}catch (Exception e) {
 			System.out.println(e.getMessage());		
-			return "ERROR: " + e.getMessage();}
-		return "OK";
+			response = "ERROR: " + e.getMessage();}
+		System.out.println("response: " + response);
+		return response;
 	}
 	
 	@POST 
-    @Path("/getDogsByAdoptoionDetails") 
+    @Path("/matchDogsToUser") 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public String getDogsByAdoptoionDetails(InputStream incomingData) {
+	public String matchDogsToUser(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-		User usr = gson.fromJson(in, User.class);
 		
-		DogAdopter details = usr.getAdoptionDetails();
-		ArrayList<Dog> dogs =  Knn.run(details);
 		String response;
 		try{
+			User usr = objectMapper.readValue(in, User.class);
+			DogAdopter details = usr.getAdoptionDetails();
+			System.out.println("matchDogsToUser service. input: "+  objectMapper.writeValueAsString(usr));
+			ArrayList<Dog> dogs =  Knn.run(details);
+
 			response = objectMapper.writeValueAsString(dogs);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			response = e.getMessage();
 		}
+		System.out.println("response: " + response);
+
 		return response;
 	}
 	
@@ -75,32 +82,45 @@ public class DogServices {
 	@Produces("application/json;charset=utf-8")
 	public String likedDogs(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
+		String response;
 		try{
 
-		User inputUser = gson.fromJson(in, User.class);
+		User inputUser = objectMapper.readValue(in, User.class);
+		System.out.println("likedDogs service. input: "+  gson.toJson(inputUser));
+
+			//User inputUser = gson.fromJson(in, User.class);
 		User savedUser = Users.getUserByUserName(inputUser.getUserName());
-		
+		response= "OK";
+
 		savedUser.setLikedDogs(inputUser.getLikedDogs());
 		Users.save(savedUser);	}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
-			return "ERROR" + e.getMessage();
+			response = "ERROR" + e.getMessage();
 		}
-		return "OK";
+		System.out.println("response: " + response);
+
+		return response;
 	}
 	
 	@POST 
     @Path("/adoptDog") 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public void adoptDog(InputStream incomingData) {
+	public String adoptDog(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-		User user = gson.fromJson(in, User.class);
-		
+		String  respoonse;
+		try{
+		User user = objectMapper.readValue(in, User.class);
+		System.out.println("adoptDog service. input: "+ objectMapper.writeValueAsString(user));
 		Dogs.remove(user.getAdoptednDog());
 		
-		// save user details with choosen dog breed
+		// save user details with chosen dog breed
 		Adoption adopt = new Adoption(user.getAdoptionDetails(), user.getAdoptednDog().getBreed());
-		
+		respoonse = "OK";
+		}catch (Exception e) {
+			respoonse = e.getMessage();
+		}
+		return respoonse;
 	}
 }
