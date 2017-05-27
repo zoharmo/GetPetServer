@@ -8,37 +8,36 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import entities.Dog;
 import enums.DogBreeds;
-
 public class Dogs {
 
 	public static void save(Dog dog) {
-		mongoManger.mongoOperation.save(dog);
+		mongoManager.mongoOperation.save(dog);
 	}
 	
 	public static Dog getDogById(String id) {
 		Query query = new Query(Criteria.where("id").is(id));
-		return(mongoManger.mongoOperation.findOne(query, Dog.class));
+		return(mongoManager.mongoOperation.findOne(query, Dog.class));
 	}
 	public static ArrayList<Dog> getDogByBreedArray(ArrayList<DogBreeds> breed) {
 		Query query = new Query(Criteria.where("breed").in(breed));
-		return((ArrayList<Dog>) mongoManger.mongoOperation.find(query, Dog.class));
+		return((ArrayList<Dog>) mongoManager.mongoOperation.find(query, Dog.class));
 	}
 	
 	public static ArrayList<Dog> getDogByBreed(DogBreeds breed) {
 		Query query = new Query(Criteria.where("breed").in(breed));
-		return((ArrayList<Dog>) mongoManger.mongoOperation.find(query, Dog.class));	
+		return((ArrayList<Dog>) mongoManager.mongoOperation.find(query, Dog.class));	
 	}
 	
 	public static void remove(Dog dog){
-		mongoManger.mongoOperation.remove(dog);
+		mongoManager.mongoOperation.remove(dog);
 	}
 	public static void removeByDogName(String name){
 		Query query = new Query(Criteria.where("name").is(name));
-		mongoManger.mongoOperation.remove(query, Dog.class);
+		mongoManager.mongoOperation.remove(query, Dog.class);
 	}
 	
 	public static Dog getDogByName(String name) {
 		Query query = new Query(Criteria.where("name").is(name));
-		return(mongoManger.mongoOperation.findOne(query, Dog.class));	
+		return(mongoManager.mongoOperation.findOne(query, Dog.class));	
 	}
 }
