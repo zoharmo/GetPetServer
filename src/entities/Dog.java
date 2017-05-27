@@ -14,7 +14,7 @@ public class Dog {
 	@Id
 	private String id;
 	private String name;
-	private String color;
+	private Colors[] color;
 	private Double age;
 	private Area area;
 	//@DBRef
@@ -32,7 +32,7 @@ public class Dog {
 	public Dog() {
 		super();
 	}
-	public Dog(String name, String color, Double age, Area area, Gender gender, Size size,
+	public Dog(String name, Colors[] color, Double age, Area area, Gender gender, Size size,
 			DogBreeds breed, byte[] picture, String description, String owener, String address) {
 		super();
 		this.name = name;
@@ -60,10 +60,10 @@ public class Dog {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getColor() {
+	public Colors[] getColor() {
 		return color;
 	}
-	public void setColor(String color) {
+	public void setColor(Colors[] color) {
 		this.color = color;
 	}
 
