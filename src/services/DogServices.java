@@ -52,29 +52,6 @@ public class DogServices {
 		return response;
 	}
 	
-	@POST 
-    @Path("/matchDogsToUser") 
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json;charset=utf-8")
-	public String matchDogsToUser(InputStream incomingData) {
-		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-		
-		String response;
-		try{
-			User usr = objectMapper.readValue(in, User.class);
-			DogAdopter details = usr.getAdoptionDetails();
-			System.out.println("matchDogsToUser service. input: "+  objectMapper.writeValueAsString(usr));
-			ArrayList<Dog> dogs =  Knn.run(details);
-
-			response = objectMapper.writeValueAsString(dogs);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-			response = e.getMessage();
-		}
-		System.out.println("response: " + response);
-
-		return response;
-	}
 	
 	@POST 
     @Path("/likedDogs") 
@@ -116,7 +93,7 @@ public class DogServices {
 		Dogs.remove(user.getAdoptednDog());
 		
 		// save user details with chosen dog breed
-		Adoption adopt = new Adoption(user.getAdoptionDetails(), user.getAdoptednDog().getBreed());
+	//	Adoption adopt = new Adoption(user.getAdoptionDetails(), user.getAdoptednDog().getBreed());
 		respoonse = "OK";
 		}catch (Exception e) {
 			respoonse = e.getMessage();

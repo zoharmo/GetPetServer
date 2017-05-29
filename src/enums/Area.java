@@ -1,6 +1,9 @@
 package enums;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Area {
@@ -35,4 +38,6 @@ public enum Area {
 	 public String getKnnValue() {
 		return knnValue;
 	}
+	 
+	
 }

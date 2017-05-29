@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Hobbies {
-	SPORT ("ספורט","sport","000001"),
-	WATCHING_TV("צפייה בטלויזיה","watching television","000010"),
-	TRAVELING("טיולים","traveling","000100"),
-	SLEEPING("לישון","jerusalem","001000"),
-	STAYING_HOME("להישאר בבית","staying home","010000"),
-	SWIMMING("שחייה","swimming","100000");
+	SPORT ("ספורט","SPORT","000001"),
+	WATCHING_TV("צפייה בטלויזיה","WATCHING_TV","000010"),
+	TRAVELING("טיולים","TRAVELING","000100"),
+	SLEEPING("לישון","SLEEPING","001000"),
+	STAYING_HOME("להישאר בבית","STAYING_HOME","010000"),
+	SWIMMING("שחייה","SWIMMING","100000");
 
 	private String hebrewName;
 	private String englishName;

@@ -1,6 +1,8 @@
 package enums;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Gender {
@@ -32,4 +34,9 @@ public enum Gender {
 	 public String getKnnValue() {
 		return knnValue;
 	}
+	 @JsonCreator
+	 public Gender create(JsonNode json) {
+		return Gender.valueOf(json.get("englishName").asText());
+	 }
+
 }

@@ -1,5 +1,7 @@
 package enums;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum DogBreeds {
@@ -75,4 +77,8 @@ public enum DogBreeds {
 	 public String getEnglishName() {
 		return englishName;
 	}
+	 @JsonCreator
+	 public DogBreeds create(JsonNode json) {
+		return DogBreeds.valueOf(json.get("englishName").asText());
+	 }
 }

@@ -1,7 +1,9 @@
 package enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Size {
@@ -47,5 +49,9 @@ public enum Size {
 		this.knnValue = knnValue;
 	}
 	
+	 @JsonCreator
+	 public Size create(JsonNode json) {
+		return Size.valueOf(json.get("englishName").asText());
+	 }
 }
 	

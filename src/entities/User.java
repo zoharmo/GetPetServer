@@ -29,9 +29,9 @@ public class User {
 		super();
 	}
 	
-	public User(String firstName, String lastName) {
+	public User(String userName,String firstName, String lastName) {
 		super();
-		this.userName = firstName;
+		this.userName = userName;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		}

@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum HouseType {
-	SMALL_APARTMENT("דירה קטנה","small apartment","001"),
-	BIG_APARTMENT("דירה גדולה","big apartment","010"),
-	GARDEN("בית עם גינה","garden","100");
+	SMALL_APARTMENT("דירה קטנה","SMALL_APARTMENT","001"),
+	BIG_APARTMENT("דירה גדולה","BIG_APARTMENT","010"),
+	GARDEN("בית עם גינה","GARDEN","100");
 	
 	private String hebrewName;
 	private String englishName;
