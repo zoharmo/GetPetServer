@@ -14,7 +14,7 @@ public class MongoTest {
 		User u = null ;
 		try {
 			u = new User("morzo","mor","zohar");
-			Users.save(u);
+			Users.doesUserNameExist("morzo");
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
