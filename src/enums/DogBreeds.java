@@ -1,6 +1,7 @@
 package enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -56,8 +57,13 @@ public enum DogBreeds {
 	Greyhound("גרייהאונד","Greyhound"),
 	Pekingese("פקינז","Pekingese"),
 	Poodle("פודל","Poodle"),
-	Maltese("מלטזי","Maltese");
-		
+	Maltese("מלטזי","Maltese"),
+	
+	@JsonIgnore
+	test1("בדיקה1","test1"),
+	@JsonIgnore
+	test2("בדיקה2","test2");
+
 	private String hebrewName;
 	private String englishName;
 
