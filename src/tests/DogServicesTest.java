@@ -6,13 +6,17 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
+import javax.validation.constraints.AssertTrue;
+
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+import crud.Adoptions;
 import crud.Dogs;
 import crud.Users;
+import entities.Adoption;
 import entities.Dog;
 import entities.User;
 
@@ -25,7 +29,7 @@ public class DogServicesTest {
 	 */
 	@Test
 	public void testAddDogForAdoption() {
-		String url = "http://localhost:8080/GetPet/getPetServer/DogServices/addDogForAdoption";
+		String url = "http://193.106.55.72:80/GetPet/getPetServer/DogServices/addDogForAdoption";
 		Dog dog = TestUtils.createDogForTest("фе");
 		String response = null;
 		try {
@@ -33,13 +37,18 @@ public class DogServicesTest {
 			response = TestUtils.createRequest(url, gson.toJson(dog));
 		} catch (Exception e) {
 			fail(e.getMessage());	
-			System.out.println(e.getMessage());
+			response = e.getMessage();
 		}
+		System.out.println(response);
 
 		Dog d = Dogs.getDogByName("фе");
 		assertEquals(response ,"OK");
 		assertTrue(d != null);
-		
+		try {
+			Dogs.removeByDogName(dog.getName());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());	
+		}
 	}
 	/**
 	 * Test 2
@@ -52,10 +61,12 @@ public class DogServicesTest {
 
 		String response = null;
 		User savedUser = null;
+		Dog dog1 = null;
+		Dog dog2 = null;
 		try {
 			User user = TestUtils.createUserForTest();
-			Dog dog1 = TestUtils.createDogForTest("Dog1");
-			Dog dog2 = TestUtils.createDogForTest("Dog2");
+			dog1 = TestUtils.createDogForTest("Dog1");
+			dog2 = TestUtils.createDogForTest("Dog2");
 			
 			Users.save(user);
 			Dogs.save(dog1);
@@ -76,7 +87,15 @@ public class DogServicesTest {
 		System.out.println(response);
 		assertEquals(response ,"OK");
 		assertEquals(likedDogs.toString() ,savedUser.getLikedDogs().toString());
-		
+		// Clean db
+		try {
+			Users.removeByUserName(savedUser.getUserName());
+			Dogs.removeByDogName(dog1.getName());
+			Dogs.removeByDogName(dog2.getName());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());	
+		}
+			
 	}
 	
 	/*
@@ -85,12 +104,46 @@ public class DogServicesTest {
 	@Test
 	public void testAdoptDog() {
 		String url = "http://localhost:8080/GetPet/getPetServer/DogServices/adoptDog";
-		
+		String response =null;
+		Dog dogAfterAdop = new Dog();
+		User userAfterAdoption = new User();
+		Dog dogForAdoption = null;
 		try {
+			//
 			User user = TestUtils.createUserForTest();
+			user = TestUtils.addDogAdopterForTest(user);
+			Users.save(user);
 			
+			dogForAdoption =	TestUtils.createDogForTest("dogForAdoption");
+			Dogs.save(dogForAdoption);
+			
+			user.setAdoptedDog(dogForAdoption);
+			
+			System.out.println("adoptDog Test. input: "+  gson.toJson(user));
+			response = TestUtils.createRequest(url, gson.toJson(user));
+			
+			dogAfterAdop = Dogs.getDogByName(dogForAdoption.getName());
+			userAfterAdoption = Users.getUserByUserName(user.getUserName());
 		} catch (Exception e) {
-			e.printStackTrace();
+			response = "ERROR" + e.getMessage();
+			}
+		System.out.println(response);
+		
+		assertEquals(response ,"OK");
+		assertTrue(dogAfterAdop == null);
+		assertEquals(userAfterAdoption.getAdoptedDog().getBreed(), dogForAdoption.getBreed());
+		Adoption a = Adoptions.getAdoptionByUserName(userAfterAdoption.getUserName());
+		assertTrue(a != null);
+		
+		System.out.println("dataset: " + gson.toJson(a));
+		// Clean db
+		try {
+			Users.removeByUserName(userAfterAdoption.getUserName());
+			Adoptions.removeByUserName(userAfterAdoption.getUserName());
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());	
 		}
+	
 	}
 }
