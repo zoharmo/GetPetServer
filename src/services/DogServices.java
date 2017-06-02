@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import KNN.Knn;
+import crud.Adoptions;
 import crud.Dogs;
 import crud.Users;
 import entities.Adoption;
@@ -79,7 +80,6 @@ public class DogServices {
 
 		return response;
 	}
-	
 	@POST 
     @Path("/adoptDog") 
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -90,14 +90,21 @@ public class DogServices {
 		try{
 		User user = objectMapper.readValue(in, User.class);
 		System.out.println("adoptDog service. input: "+ objectMapper.writeValueAsString(user));
-		Dogs.remove(user.getAdoptednDog());
-		
+		// Remove dog from dogs list for adoption
+		Dogs.remove(user.getAdoptedDog());
+		//Remove Dog From liked dog in user 
+		user.getLikedDogs().remove(user.getAdoptedDog());
+		// Save user with adopted dog
+		Users.update(user);
 		// save user details with chosen dog breed
-	//	Adoption adopt = new Adoption(user.getAdoptionDetails(), user.getAdoptednDog().getBreed());
+		Adoption adopt = new Adoption(user.getAdoptionDetails(), user.getAdoptedDog().getBreed());
+		Adoptions.save(adopt);
 		respoonse = "OK";
 		}catch (Exception e) {
-			respoonse = e.getMessage();
+			respoonse = "ERROR " + e.getMessage();
 		}
 		return respoonse;
 	}
+
+	
 }
