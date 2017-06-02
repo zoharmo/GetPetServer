@@ -1,4 +1,11 @@
 package entities;
+import java.awt.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators.In;
+
 import enums.*;
 
 public class DogAdopter {
@@ -135,4 +142,57 @@ public class DogAdopter {
 	public void setFamilyFeature(Features[] familyFeature) {
 		this.familyFeature = familyFeature;
 	}
+	
+	public ArrayList<Integer> convertFeaturesToBinaryArray() throws Exception{
+		ArrayList<Integer> list = new ArrayList();
+		list.add(toKnnIntValue(this.gender.getKnnValue()));
+		list.add(toKnnIntValue(this.familyStatus.getKnnValue()));
+		list.add(toKnnIntValue(this.communityType.getKnnValue()));
+		list.add(toKnnIntValue(this.area.getKnnValue()));
+		list.add(toKnnIntValue(this.houseType.getKnnValue()));
+		list.add(toKnnIntValue(this.dogCare.getKnnValue()));
+		list.add(listToKnnIntValue(this.otherAnimals));
+		list.add(toKnnIntValue(this.dogLocation.getKnnValue()));
+		list.add(listToKnnIntValue(this.availability));
+		list.add(listToKnnIntValue(this.healthStatus));
+		list.add(listToKnnIntValue(this.familyType));
+		list.add(listToKnnIntValue(this.relationToProperty));
+		list.add(listToKnnIntValue(this.healthStatus));
+		list.add(listToKnnIntValue(this.familyHobbies));
+		list.add(listToKnnIntValue(this.familyFeature));
+
+		return list;
+	}
+
+	private byte[] enumListToByteArray(Enum[] list) throws Exception{
+		byte[] b = new byte[enumSize(list[0])];
+	
+		for (Enum e : list) {
+			b[e.ordinal()] = 1; 
+		}
+		return b;
+	}
+	
+	 
+	 private byte[] enumToByteArray(Enum e) throws Exception {
+		 byte[] b = new byte[enumSize(e)];
+		 b[e.ordinal()] = 1;
+			return b;
+		}
+	 private int enumSize(Enum e) throws Exception {
+			return((Enum[])e.getClass().getMethod("values").invoke("values")).length;
+	 }
+	 
+	 public int listToKnnIntValue(Enum[] enums) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+		 int featuresBits = 0;
+		 Method m = enums[0].getClass().getMethod("getKnnValue");
+		 for (Enum e : enums) {
+			 int s = Integer.parseInt((String)m.invoke(e), 2);
+			 featuresBits |= s;
+		 }		 
+		 return featuresBits;
+	 }
+	 private int toKnnIntValue(String s){
+		 return Integer.parseInt(s, 2);
+	 }
 }
