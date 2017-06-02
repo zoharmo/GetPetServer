@@ -22,8 +22,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import KNN.Knn;
+import crud.Adoptions;
 import crud.Dogs;
 import crud.Users;
+import entities.Adoption;
 import entities.Dog;
 import entities.DogAdopter;
 import entities.User;
@@ -43,30 +45,31 @@ import enums.HouseType;
 import enums.Location;
 import enums.Relation;
 import enums.Size;
+import tests.TestUtils;
 
 @Path("/GetPetServices")
 public class GetPetServices {
 	private Gson gson = new Gson();
 	private ObjectMapper objectMapper =  new ObjectMapper();
 
-	@GET 
+	@POST
     @Path("/getEnum") 
-	@Produces("application/json;charset=utf-8")
-	public String getEnum(@QueryParam("enumName")String enumName) throws ClassNotFoundException {
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("application/json;charset=UTF-8")
+	public String getUser(@QueryParam("enumName")String enumName) {
 		String response = null;
-
-		try {			
+		try{
 			Class<?> c = Class.forName("enums." + enumName);
 			Method m = c.getMethod("values");		
-			response = new ObjectMapper().writeValueAsString(m.invoke(c));
+			response = objectMapper.writeValueAsString(m.invoke(c));
 			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			response = "ERROR: " + e.getMessage();
-		} 
-		
+		}catch (Exception e) {
+			System.out.println(e.getMessage());		
+			response = "ERROR:" + e.getMessage();
+		}
 		return response;
 	}
+
 	@POST 
     @Path("/matchDogsToUser") 
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -77,10 +80,13 @@ public class GetPetServices {
 		String response;
 		try{
 			User usr = objectMapper.readValue(in, User.class);
-			DogAdopter details = usr.getAdoptionDetails();
 			System.out.println("matchDogsToUser service. input: "+  objectMapper.writeValueAsString(usr));
-			ArrayList<Dog> dogs =  Knn.run(details);
-
+			DogAdopter details = usr.getAdoptionDetails();
+			//TODO: run KNN
+			//ArrayList<Dog> dogs =  Knn.run(details);
+			
+			// FOR TEST:
+			ArrayList<Dog> dogs = TestUtils.getDogsList();
 			response = objectMapper.writeValueAsString(dogs);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -90,4 +96,5 @@ public class GetPetServices {
 
 		return response;
 	}
+	
 }
