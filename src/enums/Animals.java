@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Animals {
-	NON("אין","NON","001"),
-	DOG("כלב","DOG","001"),
-	CAT("חתול","CAT","010"),
-	OTHER("אחר","OTHER","100");
+	NON("אין","NON","0001"),
+	DOG("כלב","DOG","0010"),
+	CAT("חתול","CAT","0100"),
+	OTHER("אחר","OTHER","1000");
 	
 	private String hebrewName;
 	private String englishName;
