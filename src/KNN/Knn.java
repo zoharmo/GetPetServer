@@ -12,21 +12,23 @@ import enums.DogBreeds;
 
 public class Knn {
 
-	public static ArrayList<Dog> run(DogAdopter da) throws Exception{
+	public static HashMap <Double, DogBreeds> calcDatasetDistance(DogAdopter da) throws Exception{
 		ArrayList<Integer> features = da.convertFeaturesToBinaryArray();
 		ArrayList<Adoption> dataset = Adoptions.getDataSet();
 		HashMap <Double, DogBreeds> knnResults = new HashMap<>();
-		Double distance = null;
+		Double distance = (double) 0;
 		for (Adoption adoption : dataset) {
 			for (int i =0; i< features.size(); i++) {
-				distance += HammingDistance(features.get(i), adoption.getAdopterDetailsBytes().get(i));
+				distance += HammingDistance(features.get(i).intValue(), adoption.getAdopterDetailsBytes().get(i).intValue());
 			}
 			
 			knnResults.put(distance, adoption.getAdoptionDogBreed());
+		System.out.println("distance "+ distance + " for breed "+ adoption.getAdoptionDogBreed() );	
 		}
 		
 		
-		return new  ArrayList<Dog>();
+		// TODO: return dogs?
+		return   knnResults;
 	}
 	
 	public static int HammingDistance(int a, int b){

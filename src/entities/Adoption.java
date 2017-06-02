@@ -9,6 +9,9 @@ import KNN.Utils;
 import enums.DogBreeds;
 @Document(collection = "dataset")
 public class Adoption {
+
+	@Id
+	private String id;
 	private ArrayList<Integer> adopterDetailsBytes;
 	private double normalizeAge;
 	private DogBreeds adoptionDogBreed;

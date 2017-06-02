@@ -11,7 +11,6 @@ import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
-import config.objectMapperManager;
 import crud.Users;
 import entities.User;
 

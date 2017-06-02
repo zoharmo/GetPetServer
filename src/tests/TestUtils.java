@@ -74,13 +74,12 @@ public class TestUtils {
 	public static User createUserForTest() throws Exception{
 		User user = new User("morzo", "123", "mor@gmail.com", "mor","zohar","0508537588", null, null,null );
 		Users.removeByUserName(user.getUserName());
-		Adoptions.removeByUserName(user.getUserName());
 		return user;
 	}
 	
 	public static Dog createDogForTest(String dogName){
 		Colors[] c = {Colors.BLACK,Colors.WHITE};
-		Dog dog = new Dog(dogName,c , 2.0, Area.SOUTH, Gender.FEMALE, Size.BIG, DogBreeds.Ariegeois, null, "very nice dog 1", "rave", "kirayt gat");
+		Dog dog = new Dog(dogName,c , 2.0, Area.SOUTH, Gender.FEMALE, Size.BIG, DogBreeds.test1, null, "very nice dog 1", "rave", "kirayt gat");
 		Dogs.removeByDogName(dog.getName());
 		return dog;
 	}

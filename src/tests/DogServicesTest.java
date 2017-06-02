@@ -29,7 +29,7 @@ public class DogServicesTest {
 	 */
 	@Test
 	public void testAddDogForAdoption() {
-		String url = "http://193.106.55.72:80/GetPet/getPetServer/DogServices/addDogForAdoption";
+		String url = "http://localhost:8080/GetPet/getPetServer/DogServices/addDogForAdoption";
 		Dog dog = TestUtils.createDogForTest("фе");
 		String response = null;
 		try {
@@ -108,8 +108,9 @@ public class DogServicesTest {
 		Dog dogAfterAdop = new Dog();
 		User userAfterAdoption = new User();
 		Dog dogForAdoption = null;
+		int datasetSizeBefor= Adoptions.getDataSet().size();
+
 		try {
-			//
 			User user = TestUtils.createUserForTest();
 			user = TestUtils.addDogAdopterForTest(user);
 			Users.save(user);
@@ -128,18 +129,17 @@ public class DogServicesTest {
 			response = "ERROR" + e.getMessage();
 			}
 		System.out.println(response);
-		
+		int datasetSizeAfter= Adoptions.getDataSet().size();
+
 		assertEquals(response ,"OK");
 		assertTrue(dogAfterAdop == null);
 		assertEquals(userAfterAdoption.getAdoptedDog().getBreed(), dogForAdoption.getBreed());
-		Adoption a = Adoptions.getAdoptionByUserName(userAfterAdoption.getUserName());
-		assertTrue(a != null);
-		
-		System.out.println("dataset: " + gson.toJson(a));
+		assertEquals(datasetSizeAfter,datasetSizeBefor+1);
+
 		// Clean db
 		try {
 			Users.removeByUserName(userAfterAdoption.getUserName());
-			Adoptions.removeByUserName(userAfterAdoption.getUserName());
+			Adoptions.removeByDogBreed(userAfterAdoption.getAdoptedDog().getBreed().getEnglishName());
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());	
