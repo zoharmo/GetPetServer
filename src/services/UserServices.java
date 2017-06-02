@@ -24,17 +24,11 @@ public class UserServices {
 	private Gson gson = new Gson();
 	private ObjectMapper objectMapper =  new ObjectMapper();
 
-
-	/** User Registration
-	 * check if user name dont exsit already,
-	 * save use to DB
-	 * @param user json
-	 * **/
 	@POST
-    @Path("/userRegistration") 
+    @Path("/signUp") 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public String userRegistration(InputStream incomingData) {
+	public String signUp(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User usr = gson.fromJson(in, User.class);
 		String response = "OK";
@@ -48,6 +42,31 @@ public class UserServices {
 		return response;
 	}
 
+
+	@POST
+    @Path("/signIn") 
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("application/json;charset=utf-8")
+	public String signIn(@QueryParam("userName")String userName, @QueryParam("password")String password) {
+		User user = Users.getUserByUserName(userName);
+		String s;
+		if (user == null){
+			s = "ERROR: user name dont exist";
+		}else{
+			if (!user.getPassword().equals(password)){
+				s = "ERROR: wrong password";
+			}else{
+				try{
+					s = objectMapper.writeValueAsString(user); 
+				}catch (Exception e) {
+					System.out.println(e.getMessage());	
+					s = e.getMessage();
+				}
+			}
+		}
+		return s;	
+	}
+	
 	@POST
     @Path("/updateUser") 
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -71,50 +90,35 @@ public class UserServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
 	public String getUser(@QueryParam("userName")String userName) {
-		
+		String response = null;
 		try{
 			User usr = Users.getUserByUserName(userName);
-			return objectMapper.writeValueAsString(usr);
+			if (usr == null){
+				response ="ERROR: dont exist user with userName " + usr.getUserName();
+			}
+			response = objectMapper.writeValueAsString(usr);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());		
-			return "ERROR:" + e.getMessage();
+			response = "ERROR:" + e.getMessage();
 		}
-	}
-	
-	/**
-	 * check if user name exists
-	 * @param string userName
-	 * @return true - if user name exist
-	 *			fasle - if not exist 
-	 */
-	@GET
-    @Path("/checkUserName") 
-	@Consumes(MediaType.TEXT_HTML)
-	public Boolean checkUserName(@QueryParam("userName")String userName) {
-		  return(Users.doesUserNameExist(userName));
+		return response;
 	}
 	
 	@POST
-    @Path("/signIn") 
+    @Path("/checkUserName") 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public String signIn(@QueryParam("userName")String userName, @QueryParam("password")String password) {
-		User user = Users.getUserByUserName(userName);
-		String s;
-		if (user == null){
-			s = "ERR: user name dont exist";
-		}else{
-			if (user.getPassword() != password){
-				s = "ERR: worng password";
-			}else{
-				try{
-					s = objectMapper.writeValueAsString(user); 
-				}catch (Exception e) {
-					System.out.println(e.getMessage());	
-					s = e.getMessage();
-				}
+	public String checkUserName(@QueryParam("userName")String userName) {
+		String response = "false";
+		try{
+			if( Users.doesUserNameExist(userName)){							
+				response ="true";
 			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());		
+			response = "ERROR:" + e.getMessage();
 		}
-		return s;	
+		return response;
 	}
+	
 }
