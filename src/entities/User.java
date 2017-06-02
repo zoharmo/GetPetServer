@@ -124,11 +124,11 @@ public class User {
 		this.likedDogs = likedDogs;
 	}
 
-	public Dog getAdoptednDog() {
+	public Dog getAdoptedDog() {
 		return adoptedDog;
 	}
 
-	public void setAdoptednDog(Dog adoptednDog) {
+	public void setAdoptedDog(Dog adoptednDog) {
 		this.adoptedDog = adoptednDog;
 	}
 	
