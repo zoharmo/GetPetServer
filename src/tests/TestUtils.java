@@ -56,7 +56,7 @@ public class TestUtils {
 		out.close();
 		
 		
-		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
 		
 		StringBuilder s = new StringBuilder();
 		String line = null;
@@ -84,6 +84,12 @@ public class TestUtils {
 		return dog;
 	}
 	
+	public static Dog createDogForTest(String dogName, DogBreeds breed, Area area){
+		Colors[] c = {Colors.BLACK,Colors.WHITE};
+		Dog dog = new Dog(dogName,c , 2.0, area, Gender.FEMALE, Size.BIG, breed, null, "very nice dog 1", "rave", "kirayt gat");
+		Dogs.removeByDogName(dog.getName());
+		return dog;
+	}
 	public static User addDogAdopterForTest(User user){
 		Animals[] animals = {Animals.DOG};
 		Availability[] avilabilities = {Availability.EVENING};		

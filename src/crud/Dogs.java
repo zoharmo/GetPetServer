@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import entities.Dog;
+import enums.Area;
 import enums.DogBreeds;
 public class Dogs {
 
@@ -25,6 +26,12 @@ public class Dogs {
 	
 	public static ArrayList<Dog> getDogByBreed(DogBreeds breed) {
 		Query query = new Query(Criteria.where("breed").in(breed));
+		return((ArrayList<Dog>) mongoManager.mongoOperation.find(query, Dog.class));	
+	}
+	public static ArrayList<Dog> getDogByBreedAndArea(DogBreeds breed, Area area) {
+		Criteria criteria = new Criteria();
+		criteria.andOperator(Criteria.where("breed").in(breed),Criteria.where("area").in(area) );
+		Query query = new Query(criteria);
 		return((ArrayList<Dog>) mongoManager.mongoOperation.find(query, Dog.class));	
 	}
 	

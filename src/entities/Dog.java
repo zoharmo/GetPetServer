@@ -23,7 +23,7 @@ public class Dog {
 	private Size size;
 	private DogBreeds breed;
 	
-	private byte[] picture;
+	private String picture;
 	private String description;
 	private String owenerName;
 	private String address;
@@ -33,7 +33,7 @@ public class Dog {
 		super();
 	}
 	public Dog(String name, Colors[] color, Double age, Area area, Gender gender, Size size,
-			DogBreeds breed, byte[] picture, String description, String owener, String address) {
+			DogBreeds breed, String picture, String description, String owener, String address) {
 		super();
 		this.name = name;
 		this.color = color;
@@ -96,10 +96,10 @@ public class Dog {
 			}
 	  }
 	  
-	  public byte[] getPicture() {
+	  public String getPicture() {
 			return picture;
 		}
-		public void setPicture(byte[] picture) {
+		public void setPicture(String picture) {
 			this.picture = picture;
 		}
 		public String getDescription() {

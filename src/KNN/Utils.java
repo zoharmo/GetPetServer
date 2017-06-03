@@ -24,5 +24,15 @@ private static double MIN_AGE = 5;
 		
 		return normalizeX;
 	}
+
+	public static int HammingDistance(int a, int b){
+		int differntBytes = Integer.bitCount(a^b);
+		//TODO: remove
+		int tmp = a^b;
+		System.out.println("the distance between "+ Integer.toBinaryString(a)+" and " + Integer.toBinaryString(b) +
+				" is "+ Integer.toBinaryString(tmp) + " (" + differntBytes+")");
+		return differntBytes;
+	}
+	
 	}
  
