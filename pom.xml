@@ -16,6 +16,13 @@
     <version>2.1.2</version>
   
 </dependency>
+<dependency>
+    <groupId>com.google.collections</groupId>
+    <artifactId>google-collections</artifactId>
+    <version>1.0</version>
+</dependency>
+
+
      		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.bundles/jaxrs-ri -->
 	<dependency>
 	    <groupId>org.glassfish.jersey.bundles</groupId>

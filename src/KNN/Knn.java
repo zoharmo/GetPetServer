@@ -2,6 +2,11 @@ package KNN;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeSet;
+
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
 
 import crud.Adoptions;
 import entities.Adoption;
@@ -12,10 +17,13 @@ import enums.DogBreeds;
 
 public class Knn {
 
-	public static HashMap <Double, DogBreeds> calcDatasetDistance(DogAdopter da) throws Exception{
+	public static Multimap <Double, DogBreeds> calcDatasetDistance(DogAdopter da) throws Exception{
 		ArrayList<Integer> features = da.convertFeaturesToBinaryArray();
 		ArrayList<Adoption> dataset = Adoptions.getDataSet();
-		HashMap <Double, DogBreeds> knnResults = new HashMap<>();
+		Multimap<Double, DogBreeds> knnResults = ArrayListMultimap.create();
+		// Multimap<String, MyObj> multimap = 
+			//      MultimapBuilder.treeKeys().linkedListValues().build();
+
 		Double distance = (double) 0;
 		for (Adoption adoption : dataset) {
 			for (int i =0; i< features.size(); i++) {
@@ -26,8 +34,6 @@ public class Knn {
 		System.out.println("distance "+ distance + " for breed "+ adoption.getAdoptionDogBreed() );	
 		}
 		
-		
-		// TODO: return dogs?
 		return   knnResults;
 	}
 	
@@ -39,4 +45,14 @@ public class Knn {
 				" is "+ Integer.toBinaryString(tmp) + " (" + differntBytes+")");
 		return differntBytes;
 	}
+	
+	public ArrayList<Dog> run(DogAdopter da) throws Exception {
+		
+		Multimap <Double, DogBreeds> knnDistance = calcDatasetDistance(da);
+	//	SortedSet<String> keys = new TreeMultimap<String>(knnDistance.keySet());
+		return null;
+		
+	}
+	//
+
 }

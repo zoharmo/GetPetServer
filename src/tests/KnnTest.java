@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
+
+import com.google.common.collect.Multimap;
+
 import KNN.Knn;
 import crud.Adoptions;
 import entities.Adoption;
@@ -12,7 +15,7 @@ import enums.*;
 
 public class KnnTest {
 	@Test
-	public void testKnn() throws Exception {
+	public void testKnnCalc() throws Exception {
 		DogAdopter da1 = new DogAdopter(Gender.FEMALE, 16, FamilyStatus.MARRIED, 
 				CommunityType.CITY, Area.CENTER,  HouseType.BIG_APARTMENT, DogCare.ME, 
 				new Animals[] {Animals.CAT}, Location.BOTH, new Availability[] { Availability.EVENING},
@@ -39,8 +42,8 @@ public class KnnTest {
 		Adoptions.save(adop1);
 		Adoptions.save(adop2);
 		
-		HashMap<Double, DogBreeds> result = Knn.calcDatasetDistance(newUser);
-		for(Map.Entry<Double,DogBreeds> entry : result.entrySet()) {
+		Multimap<Double, DogBreeds> result = Knn.calcDatasetDistance(newUser);
+		for(Map.Entry<Double,DogBreeds> entry : result.entries()) {
 		    double key = entry.getKey();
 		    DogBreeds value = entry.getValue();
 		    System.out.println("Knn distance from " + value + " is " + key);
@@ -51,6 +54,5 @@ public class KnnTest {
 		Adoptions.removeByDogBreed(adop2.getAdoptionDogBreed().getEnglishName());
 
 	}
-
 
 }
