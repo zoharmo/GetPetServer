@@ -15,18 +15,42 @@ public class User {
 	private String id;
     @Indexed(unique = true)  
 	private String userName;
+    private String firstName;
+	private String lastName;
 	private String password;
 	private String emailAdress;
-	private String firstName;
-	private String secondName;
-	private int phoneNumber;
+	private String phoneNumber;
 	private DogAdopter adoptionDetails;
-	//private Map<Dog, User> uploadDogs = new HashMap<>();
 	@DBRef
-	private Map<String, ArrayList<User>> uploadsDogs = new HashMap<>();
-	@DBRef
-	private ArrayList<Dog> dogsRequest = new ArrayList();
+	private ArrayList<Dog> likedDogs = new ArrayList();
+	private Dog adoptedDog;
 	
+	public User() {
+		super();
+	}
+	
+	public User(String userName,String firstName, String lastName) {
+		super();
+		this.userName = userName;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		}
+
+	public User(String userName, String password, String emailAdress, String firstName, String lastName,
+			String phoneNumber, DogAdopter adoptionDetails, ArrayList<Dog> likedDogs,
+			Dog adoptednDog) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.emailAdress = emailAdress;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.adoptionDetails = adoptionDetails;
+		this.likedDogs = likedDogs;
+		this.adoptedDog = adoptednDog;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -58,20 +82,13 @@ public class User {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
 
-	public String getSecondName() {
-		return secondName;
-	}
-
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
-	}
-
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -83,41 +100,6 @@ public class User {
 		this.id = id;
 	}
 
-
-	public Map<String, ArrayList<User>> getUploadDogs() {
-		return uploadsDogs;
-	}
-
-	public void setUploadDogs(Map<String, ArrayList<User>> uploadDogs) {
-		this.uploadsDogs = uploadDogs;
-	}
-	
-	public void addUploadDog(String dogId) {
-		this.uploadsDogs.put(dogId, null);
-	}
-	public int addUserToUploadDog(String dogId,User user) {
-		if (this.uploadsDogs.containsKey(dogId)){
-			this.uploadsDogs.get(dogId).add(user);
-			return 0;
-		}else{
-			System.out.println("ERROR: cant add user to upload dog list. dog is not on the list");
-			return -1;
-			}
-	}
-	
-	public ArrayList<Dog> getDogsRequests() {
-		return dogsRequest;
-	}
-	
-
-	public void setDogsRequests(ArrayList<Dog> dogsRequests) {
-		this.dogsRequest = dogsRequests;
-	}
-	
-	public void AddDogsRequests(Dog dog) {
-		this.dogsRequest.add(dog);
-	}
-	
 	public DogAdopter getAdoptionDetails() {
 		return adoptionDetails;
 	}
@@ -125,10 +107,29 @@ public class User {
 	public void setAdoptionDetails(DogAdopter adoptionDetails) {
 		this.adoptionDetails = adoptionDetails;
 	}
-	 @Override
-	public String toString() {
-			  return "User: id :" + id + " name: " + this.firstName + " user name " + this.userName + " Dog Req: "
-					  + dogsRequest.toString() + " dog uplaods  "+ this.uploadsDogs.toString();
-		 
-	 }
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public ArrayList<Dog> getLikedDogs() {
+		return likedDogs;
+	}
+
+	public void setLikedDogs(ArrayList<Dog> likedDogs) {
+		this.likedDogs = likedDogs;
+	}
+
+	public Dog getAdoptedDog() {
+		return adoptedDog;
+	}
+
+	public void setAdoptedDog(Dog adoptednDog) {
+		this.adoptedDog = adoptednDog;
+	}
+	
 }

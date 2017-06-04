@@ -1,11 +1,12 @@
 package enums;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum CommunityType {
-	CITY ("עיר","city","001"),
-	MOSHAV("מושב","moshav","010"),
-	KIBBUTZ("קיבוץ","kibbutz","100");
+	CITY ("עיר","CITY","001"),
+	MOSHAV("מושב","MOSHAV","010"),
+	KIBBUTZ("קיבוץ","KIBBUTZ","100");
 
 	private String hebrewName;
 	private String englishName;
@@ -28,7 +29,7 @@ public enum CommunityType {
 	 public String getEnglishName() {
 		return englishName;
 	}
-
+	 @JsonIgnore
 	 public String getKnnValue() {
 		return knnValue;
 	}

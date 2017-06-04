@@ -1,11 +1,15 @@
 package enums;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Animals {
-	Dog("כלב","dog","001"),
-	Cat("חתול","cat","010"),
-	Other("אחר","other","100");
+	NON("אין","NON","0001"),
+	DOG("כלב","DOG","0010"),
+	CAT("חתול","CAT","0100"),
+	OTHER("אחר","OTHER","1000");
 	
 	private String hebrewName;
 	private String englishName;
@@ -28,8 +32,13 @@ public enum Animals {
 	 public String getEnglishName() {
 		return englishName;
 	}
-
+	 
+	 @JsonIgnore
 	 public String getKnnValue() {
 		return knnValue;
 	}
+	 @JsonCreator
+	 public Animals create(JsonNode json) {
+		return Animals.valueOf(json.get("englishName").asText());
+	 }
 }

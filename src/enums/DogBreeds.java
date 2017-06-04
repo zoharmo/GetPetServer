@@ -1,5 +1,8 @@
 package enums;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum DogBreeds {
@@ -39,12 +42,28 @@ public enum DogBreeds {
 	AustralianShepherd("רועה אוסטרלי","Australian Shepherd"),
 	AustralianSilkyTerrier("טרייר סילקי אוסטרלי","Australian Silky Terrier"),
 	AustralianStumpyTailCattle("כלב בקר גידם-זנב אוסטרלי","Australian Stumpy Tail Cattle Dog"),
-	AustralianTerrier("טרייר אוסטרלי","AustralianTerrier"),
+	AustralianTerrier("טרייר אוסטרלי","Australian Terrier"),
 	AustrianBlackAndTanHound("כלב ציד שחור וחום אוסטרי","Austrian Black and Tan Hound"),
 	AustrianPinscher("פינצ'ר אוסטרי","Austrian Pinscher"),
 	Azawakh("אזוואק","Azawakh"),
-	Pomeranian("פומרניאן","Pomeranian");
+	Pomeranian("פומרניאן","Pomeranian"),
+	LabradorRetriever("לברדור רטריוור","Labrador Retriever"),
+	BullTerrier("בול טרייר","Bull Terrier"),
+	GoldenRetriever("גולדן רטריוור","Golden Retriever"),
+	GermanShepherd("רועה גרמני","German Shepherd"),
+	Basenji("בסנג'י","Basenji"),
+	BorderCollie("בורדר קולי","Border Collie"),
+	MiniaturePinscher("פינצ'ר","Miniature Pinscher"),
+	Greyhound("גרייהאונד","Greyhound"),
+	Pekingese("פקינז","Pekingese"),
+	Poodle("פודל","Poodle"),
+	Maltese("מלטזי","Maltese"),
 	
+	@JsonIgnore
+	test1("בדיקה1","test1"),
+	@JsonIgnore
+	test2("בדיקה2","test2");
+
 	private String hebrewName;
 	private String englishName;
 
@@ -64,4 +83,8 @@ public enum DogBreeds {
 	 public String getEnglishName() {
 		return englishName;
 	}
+	 @JsonCreator
+	 public DogBreeds create(JsonNode json) {
+		return DogBreeds.valueOf(json.get("englishName").asText());
+	 }
 }

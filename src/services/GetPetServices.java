@@ -1,9 +1,13 @@
 package services;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,85 +21,79 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+import KNN.Knn;
+import crud.Adoptions;
+import crud.Dogs;
+import crud.Users;
+import entities.Adoption;
 import entities.Dog;
+import entities.DogAdopter;
 import entities.User;
 import enums.Animals;
+import enums.Area;
+import enums.Availability;
+import enums.CommunityType;
+import enums.DogBreeds;
+import enums.DogCare;
+import enums.FamilyStatus;
+import enums.FamilyType;
 import enums.Features;
+import enums.Gender;
+import enums.HealthStatus;
+import enums.Hobbies;
+import enums.HouseType;
+import enums.Location;
+import enums.Relation;
+import enums.Size;
+import tests.TestUtils;
 
 @Path("/GetPetServices")
 public class GetPetServices {
-	
+	private Gson gson = new Gson();
+	private ObjectMapper objectMapper =  new ObjectMapper();
+
 	@POST
-    @Path("/getUserAfterRegistration") 
+    @Path("/getEnum") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
-	public String getUserAfterRegistration(InputStream incomingData) {
-		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-		Gson g = new Gson();
-		User usr = g.fromJson(in, User.class);
-		String s = g.toJson(usr);
-		return s;
+	@Produces("application/json;charset=UTF-8")
+	public String getUser(@QueryParam("enumName")String enumName) {
+		String response = null;
+		try{
+			Class<?> c = Class.forName("enums." + enumName);
+			Method m = c.getMethod("values");		
+			response = objectMapper.writeValueAsString(m.invoke(c));
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());		
+			response = "ERROR:" + e.getMessage();
+		}
+		return response;
 	}
-	
 
 	@POST 
-    @Path("/getDogAfterUpload") 
+    @Path("/matchDogsToUser") 
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
-	public String getDogAfterUpload(InputStream incomingData) {
+	@Produces("application/json;charset=utf-8")
+	public String matchDogsToUser(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-		Gson g = new Gson();
-		Dog dog = g.fromJson(in, Dog.class);
-		String s = g.toJson(dog);
-		return s;
-	}
-	
-	@POST 
-    @Path("/getDogsByAdoptionDetails") 
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("application/json")
-	public String getDogsByAdoptionDetails(InputStream incomingData) {
-		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-		Gson g = new Gson();
-		User usr = g.fromJson(in, User.class);
-//		DogAdopter adoptionDetails = usr.getAdoptionDetails();
-		System.out.println(usr.getUserName());
 		
-		/** knn algorithm according to adoptionDetails below **/
-		
-		ArrayList<Dog> dogs = new ArrayList<>();
-		Dog d1 = new Dog();
-		d1.setName("rexi");
-		d1.setAge(4);
-		d1.setId("123");
-		
-		Dog d2 = new Dog();
-		d2.setName("lasi");
-		d2.setAge(3);
-		d2.setId("1234");
-		
-		dogs.add(d2);
-		dogs.add(d1);
-		
-		String s = g.toJson(dogs);
-		return s;
-	}
-	
-	@GET 
-    @Path("/getEnumAsJson") 
-	@Produces("application/json")
-	public String getEnumAsJson(@QueryParam("enumName")String enumName) {
-		String s = new String();
-		
-		try {
-			if ("Animals".equals(enumName))
-				s = new ObjectMapper().writeValueAsString(Animals.values());
-			else if ("Features".equals(enumName))
-				s = new ObjectMapper().writeValueAsString(Features.values());
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+		String response;
+		try{
+			User usr = objectMapper.readValue(in, User.class);
+			System.out.println("matchDogsToUser service. input: "+  objectMapper.writeValueAsString(usr));
+			
+		//	ArrayList<Dog> dogs =  Knn.run(usr);
+			
+			// FOR TEST:
+			ArrayList<Dog> dogs = TestUtils.getDogsList();
+			response = objectMapper.writeValueAsString(dogs);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			response = "ERROR" +e.getMessage();
 		}
-		
-		return s;
+		System.out.println("response: " + response);
+
+		return response;
 	}
+	
 }

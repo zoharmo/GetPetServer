@@ -1,11 +1,12 @@
 package enums;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum FamilyStatus {
-	SINGLE("רווק","single","001"),
-	MARRIED("נשוי","married","010"),
-	MARRIED_WITH_CHILDREN("נשוי עם ילדים","married with children","100");
+	SINGLE("רווק","SINGLE","001"),
+	MARRIED("נשוי","MARRIED","010"),
+	MARRIED_WITH_CHILDREN("נשוי עם ילדים","MARRIED_WITH_CHILDREN","100");
 	
 	private String hebrewName;
 	private String englishName;
@@ -28,7 +29,7 @@ public enum FamilyStatus {
 	 public String getEnglishName() {
 		return englishName;
 	}
-
+	 @JsonIgnore
 	 public String getKnnValue() {
 		return knnValue;
 	}

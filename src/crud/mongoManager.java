@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 
 import config.SpringMongoConfig;
 
-public class mongoManger {
+public class mongoManager {
 	public static ApplicationContext ctx =
             new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 	public static MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");

@@ -1,47 +1,46 @@
 package crud;
-
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-
 import entities.User;
 
 public class Users {
 
-	public static int save(User user) {
-		if(!doesUserNameExist(user.getUserName())){
-			mongoManger.mongoOperation.save(user);
-			return 0;}
-		else{
-			System.out.println("ERROR: failed to save user");
-			return -1;
-		}
+	public static void save(User user) throws Exception{
+			mongoManager.mongoOperation.save(user);
 	}
 	
-	public static int update(User user) {
-		User userToUpdate = getUserByUserName(user.getUserName()) ;
-		if (userToUpdate != null){
-			if (user.getId() == null){
-				user.setId(userToUpdate.getId());
+	public static void update(User user) throws Exception {
+		if (user.getId() == null){
+			User userToUpdate = getUserByUserName(user.getUserName()) ;
+			if (userToUpdate !=null ){
+					user.setId(userToUpdate.getId());
+			}else{
+				throw new Exception("not found user with user name " + user.getUserName());
 			}
-			mongoManger.mongoOperation.save(user);
-
-			return 0;
-		}else{
-			System.out.println("ERROR: failed to update user, not found user with user name" + user.getUserName());
-
-			return -1;
 		}
-
+		mongoManager.mongoOperation.save(user);
 	}
 	
-	public static User getUserById(String userId) {
+	public static void remove(User user) throws Exception {
+		if (user.getId() == null){
+			user = getUserByUserName(user.getUserName()) ;
+		}
+		mongoManager.mongoOperation.remove(user);
+	}
+	public static void removeByUserName(String userName) throws Exception{
+		User user = getUserByUserName(userName);
+		if (user != null){
+			remove(user);
+		}
+	}
+	public static User getUserById(String userId) throws Exception{
 		Query searchUserQuery = new Query(Criteria.where("id").is(userId));
-		return(mongoManger.mongoOperation.findOne(searchUserQuery, User.class));
+		return(mongoManager.mongoOperation.findOne(searchUserQuery, User.class));
 	}
 	
-	public static User getUserByUserName(String username) {
+	public static User getUserByUserName(String username){
 		Query searchUserQuery = new Query(Criteria.where("userName").is(username));
-		return(mongoManger.mongoOperation.findOne(searchUserQuery, User.class));
+		return(mongoManager.mongoOperation.findOne(searchUserQuery, User.class));
 	}
 	
 	public static boolean doesUserNameExist(String username) {

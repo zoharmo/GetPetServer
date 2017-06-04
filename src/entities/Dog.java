@@ -1,8 +1,11 @@
 package entities;
-import java.util.ArrayList;
+
+import java.awt.Color;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import enums.*;
 @Document(collection = "dogs")
@@ -11,15 +14,40 @@ public class Dog {
 	@Id
 	private String id;
 	private String name;
-	private String color;
-	private int age;
+	private Colors[] color;
+	private Double age;
 	private Area area;
-	private User owner;
-	private ArrayList<DogBreeds> breed = new ArrayList<>();
+	//@DBRef
+	//private User owner;
+	private Gender gender;
+	private Size size;
+	private DogBreeds breed;
 	
-	private byte[] picture;
+	private String picture;
 	private String description;
-	
+	private String owenerName;
+	private String address;
+	private String phone;
+
+	public Dog() {
+		super();
+	}
+	public Dog(String name, Colors[] color, Double age, Area area, Gender gender, Size size,
+			DogBreeds breed, String picture, String description, String owener, String address) {
+		super();
+		this.name = name;
+		this.color = color;
+		this.age = age;
+		this.area = area;
+		this.gender = gender;
+		this.size = size;
+		this.breed = breed;
+		this.picture = picture;
+		this.description = description;
+		this.owenerName = owener;
+		this.address = address;
+		
+	}
 	public String getId() {
 		return id;
 	}
@@ -32,22 +60,17 @@ public class Dog {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getColor() {
+	public Colors[] getColor() {
 		return color;
 	}
-	public void setColor(String color) {
+	public void setColor(Colors[] color) {
 		this.color = color;
 	}
-	public User getOwner() {
-		return owner;
-	}
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
-	public int getAge() {
+
+	public Double getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Double age) {
 		this.age = age;
 	}
 	public Area getArea() {
@@ -57,17 +80,26 @@ public class Dog {
 		this.area = area;
 	}
 	
+	public Gender getGender() {
+		return gender;
+	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 	
-	  @Override
+	@Override
 	    public String toString() {
-		  return "Dog: id :" + id + " name: " + name;
-	 
+		try{
+		  return new ObjectMapper().writeValueAsString(this);	 }
+		catch (Exception e) {
+			return 	id;
+			}
 	  }
 	  
-	  public byte[] getPicture() {
+	  public String getPicture() {
 			return picture;
 		}
-		public void setPicture(byte[] picture) {
+		public void setPicture(String picture) {
 			this.picture = picture;
 		}
 		public String getDescription() {
@@ -76,11 +108,36 @@ public class Dog {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		public ArrayList<DogBreeds> getBreed() {
+		public DogBreeds getBreed() {
 			return breed;
 		}
-		public void setBreed(ArrayList<DogBreeds> breed) {
+		public void setBreed(DogBreeds breed) {
 			this.breed = breed;
+		}
+		public Size getSize() {
+			return size;
+		}
+		public void setSize(Size size) {
+			this.size = size;
+		}
+		public String getOwenerName() {
+			return owenerName;
+		}
+		public void setOwenerName(String owenerName) {
+			this.owenerName = owenerName;
+		}
+		public String getAddress() {
+			return address;
+		}
+		public void setAddress(String address) {
+			this.address = address;
+		}
+		
+		public String getPhone() {
+			return phone;
+		}
+		public void setPhone(String phone) {
+			this.phone = phone;
 		}
 		
 }

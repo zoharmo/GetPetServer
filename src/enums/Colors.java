@@ -2,22 +2,21 @@ package enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Area {
-	NORTH ("צפון","NORTH","0000"),
-	SOUTH("דרום","SOUTH","0001"),
-	CENTER("מרכז","CENTER","0010"),
-	JERUSALEM("ירושליים והסביבה","JERUSALEM","0100"),
-	EILAT("אילת והסביבה","EILAT","1000");
-
+public enum Colors {
+	WHITE("לבן","WHITE","00001"),
+	BLACK("שחור","BLACK","00010"),
+	BROWN("חום","BROWN","00100"),
+	GREY("אפור","GREY","01000"),
+	DALMATIAN("דלמטי","DALMATIAN","10000");
+	
 	private String hebrewName;
 	private String englishName;
 	private String knnValue;
 
-	Area(String hebrewName, String englishName,  String knnValue) {
+	Colors(String hebrewName, String englishName,  String knnValue) {
 		this.hebrewName = hebrewName;
 		this.englishName = englishName;
 		this.knnValue = knnValue;
@@ -34,10 +33,13 @@ public enum Area {
 	 public String getEnglishName() {
 		return englishName;
 	}
+	 
 	 @JsonIgnore
 	 public String getKnnValue() {
 		return knnValue;
 	}
-	 
-	
+	 @JsonCreator
+	 public Animals create(JsonNode json) {
+		return Animals.valueOf(json.get("englishName").asText());
+	 }
 }
