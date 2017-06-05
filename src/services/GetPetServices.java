@@ -17,6 +17,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.data.annotation.AccessType;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -52,9 +54,9 @@ public class GetPetServices {
 	private Gson gson = new Gson();
 	private ObjectMapper objectMapper =  new ObjectMapper();
 
-	@POST
+	@GET
     @Path("/getEnum") 
-	@Consumes(MediaType.APPLICATION_JSON)
+	//@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=UTF-8")
 	public String getUser(@QueryParam("enumName")String enumName) {
 		String response = null;
