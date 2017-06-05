@@ -29,7 +29,7 @@ public class DogServicesTest {
 	 */
 	@Test
 	public void testAddDogForAdoption() {
-		String url = "http://localhost:8080/GetPet/getPetServer/DogServices/addDogForAdoption";
+		String url = "http://193.106.55.72/GetPet/getPetServer/DogServices/addDogForAdoption";
 		Dog dog = TestUtils.createDogForTest("фе");
 		String response = null;
 		try {
