@@ -33,7 +33,7 @@ public class Dog {
 		super();
 	}
 	public Dog(String name, Colors[] color, Double age, Area area, Gender gender, Size size,
-			DogBreeds breed, String picture, String description, String owener, String address) {
+			DogBreeds breed, String picture, String description, String owener, String address, String phone) {
 		super();
 		this.name = name;
 		this.color = color;
@@ -46,6 +46,7 @@ public class Dog {
 		this.description = description;
 		this.owenerName = owener;
 		this.address = address;
+		this.phone = phone;
 		
 	}
 	public String getId() {
