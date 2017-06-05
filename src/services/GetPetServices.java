@@ -52,9 +52,9 @@ public class GetPetServices {
 	private Gson gson = new Gson();
 	private ObjectMapper objectMapper =  new ObjectMapper();
 
-	@POST
+	@GET
     @Path("/getEnum") 
-	@Consumes(MediaType.APPLICATION_JSON)
+//	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=UTF-8")
 	public String getUser(@QueryParam("enumName")String enumName) {
 		String response = null;
