@@ -20,7 +20,7 @@ public class UserServicesTest {
 
 	@Test
 	public void testSignUp() {
-		String url = "http://localhost:8080/GetPet/getPetServer/UserServices/signUp";
+		String url = "http://193.106.55.72/GetPet/getPetServer/UserServices/signUp";
 		String response = null;
 		User user = null;
 
@@ -54,7 +54,7 @@ public class UserServicesTest {
 		try {
 			user = TestUtils.createUserForTest();
 			Users.save(user);
-			String url = "http://localhost:8080/GetPet/getPetServer/UserServices/signIn?userName=" + user.getUserName() +
+			String url = "http://193.106.55.72/GetPet/getPetServer/UserServices/signIn?userName=" + user.getUserName() +
 					"&password="+user.getPassword();
 
 			System.out.println("SignIn Test. url: " + url);
@@ -87,7 +87,7 @@ public class UserServicesTest {
 		try {
 			user = TestUtils.createUserForTest();
 			Users.save(user);
-			String url = "http://localhost:8080/GetPet/getPetServer/UserServices/getUser?userName=" + user.getUserName() ;
+			String url = "http://193.106.55.72/GetPet/getPetServer/UserServices/getUser?userName=" + user.getUserName() ;
 
 			System.out.println("GetUser Test. url: " + url);
 			response = TestUtils.createRequest(url, null);	
@@ -119,7 +119,7 @@ public class UserServicesTest {
 		try {
 			user = TestUtils.createUserForTest();
 			Users.save(user);
-			String url = "http://localhost:8080/GetPet/getPetServer/UserServices/updateUser" ;
+			String url = "http://193.106.55.72/GetPet/getPetServer/UserServices/updateUser" ;
 			user.setFirstName("coral");
 			System.out.println("updateUser Test. input: " + gson.toJson(user));
 			response = TestUtils.createRequest(url, gson.toJson(user));	
@@ -149,7 +149,7 @@ public class UserServicesTest {
 		try {
 			user = TestUtils.createUserForTest();
 			Users.save(user);
-			String url = "http://localhost:8080/GetPet/getPetServer/UserServices/checkUserName?userName=" + user.getUserName() ;
+			String url = "http://193.106.55.72/GetPet/getPetServer/UserServices/checkUserName?userName=" + user.getUserName() ;
 
 			System.out.println("check User Test. url: " + url);
 			response = TestUtils.createRequest(url, null);	

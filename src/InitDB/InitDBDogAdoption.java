@@ -1,8 +1,9 @@
-package tests;
+package InitDB;
 
 import org.junit.Test;
 import crud.Adoptions;
 import entities.Adoption;
+import entities.Dog;
 import entities.DogAdopter;
 import enums.Animals;
 import enums.Area;

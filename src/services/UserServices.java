@@ -104,9 +104,9 @@ public class UserServices {
 		return response;
 	}
 	
-	@POST
+	@GET
     @Path("/checkUserName") 
-	@Consumes(MediaType.APPLICATION_JSON)
+	//@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
 	public String checkUserName(@QueryParam("userName")String userName) {
 		String response = "false";

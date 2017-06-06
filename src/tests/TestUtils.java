@@ -46,7 +46,7 @@ public class TestUtils {
 		URL url = new URL(Url);
 		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 		connection.setDoOutput(true);
-		connection.setRequestProperty("Content-Type", "application/json");
+		connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
 		connection.setRequestProperty("Accept", "application/json;charset=UTF-8");
 		connection.setConnectTimeout(500000);
 		connection.setReadTimeout(500000);
@@ -79,14 +79,14 @@ public class TestUtils {
 	
 	public static Dog createDogForTest(String dogName){
 		Colors[] c = {Colors.BLACK,Colors.WHITE};
-		Dog dog = new Dog(dogName,c , 2.0, Area.SOUTH, Gender.FEMALE, Size.BIG, DogBreeds.test1, null, "very nice dog 1", "rave", "kirayt gat");
+		Dog dog = new Dog(dogName,c , 2.0, Area.SOUTH, Gender.FEMALE, Size.BIG, DogBreeds.Pomeranian, null, "very nice dog 1", "rave", "kirayt gat", "00");
 		Dogs.removeByDogName(dog.getName());
 		return dog;
 	}
 	
 	public static Dog createDogForTest(String dogName, DogBreeds breed, Area area){
 		Colors[] c = {Colors.BLACK,Colors.WHITE};
-		Dog dog = new Dog(dogName,c , 2.0, area, Gender.FEMALE, Size.BIG, breed, null, "very nice dog 1", "rave", "kirayt gat");
+		Dog dog = new Dog(dogName,c , 2.0, area, Gender.FEMALE, Size.BIG, breed, null, "very nice dog 1", "rave", "kirayt gat", "00");
 		Dogs.removeByDogName(dog.getName());
 		return dog;
 	}

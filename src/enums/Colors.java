@@ -6,11 +6,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Colors {
-	WHITE("לבן","WHITE","00001"),
-	BLACK("שחור","BLACK","00010"),
-	BROWN("חום","BROWN","00100"),
-	GREY("אפור","GREY","01000"),
-	DALMATIAN("דלמטי","DALMATIAN","10000");
+	
+	WHITE("לבן","WHITE","000001"),
+	BLACK("שחור","BLACK","000010"),
+	BROWN("חום","BROWN","000100"),
+	GREY("אפור","GREY","001000"),
+	BEZ("בז","BEZ","010000"),
+	DALMATIAN("דלמטי","DALMATIAN","100000");
 	
 	private String hebrewName;
 	private String englishName;

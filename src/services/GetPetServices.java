@@ -52,9 +52,9 @@ public class GetPetServices {
 	private Gson gson = new Gson();
 	private ObjectMapper objectMapper =  new ObjectMapper();
 
-	@POST
+	@GET
     @Path("/getEnum") 
-	@Consumes(MediaType.APPLICATION_JSON)
+//	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=UTF-8")
 	public String getUser(@QueryParam("enumName")String enumName) {
 		String response = null;
@@ -82,10 +82,10 @@ public class GetPetServices {
 			User usr = objectMapper.readValue(in, User.class);
 			System.out.println("matchDogsToUser service. input: "+  objectMapper.writeValueAsString(usr));
 			
-		//	ArrayList<Dog> dogs =  Knn.run(usr);
+			ArrayList<Dog> dogs =  Knn.run(usr);
 			
 			// FOR TEST:
-			ArrayList<Dog> dogs = TestUtils.getDogsList();
+		//	ArrayList<Dog> dogs = TestUtils.getDogsList();
 			response = objectMapper.writeValueAsString(dogs);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

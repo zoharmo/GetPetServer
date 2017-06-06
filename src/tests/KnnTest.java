@@ -47,8 +47,8 @@ public class KnnTest {
 				new HealthStatus[]{HealthStatus.ALLERGIC}, new FamilyType[] {  FamilyType.FRIENDLY,FamilyType.LOAD},
 				new Relation[] { Relation.LANDSCAPED_GARDEN}, new Hobbies[] { Hobbies.SLEEPING},
 				new Features[] { Features.ATTENTION, Features.STUBBORN});	
-		Adoption adop1 = new Adoption(da1, DogBreeds.test1);
-		Adoption adop2 = new Adoption(da2, DogBreeds.test2);
+		Adoption adop1 = new Adoption(da1, DogBreeds.Pomeranian);
+		Adoption adop2 = new Adoption(da2, DogBreeds.Pekingese);
 		
 		Adoptions.save(adop1);
 		Adoptions.save(adop2);
@@ -87,15 +87,15 @@ public class KnnTest {
 				new HealthStatus[]{HealthStatus.ALLERGIC}, new FamilyType[] {  FamilyType.FRIENDLY,FamilyType.LOAD},
 				new Relation[] { Relation.LANDSCAPED_GARDEN}, new Hobbies[] { Hobbies.SLEEPING},
 				new Features[] { Features.ATTENTION, Features.STUBBORN});	
-		Adoption adop1 = new Adoption(da1, DogBreeds.test1);
-		Adoption adop2 = new Adoption(da2, DogBreeds.test2);
+		Adoption adop1 = new Adoption(da1, DogBreeds.Pomeranian);
+		Adoption adop2 = new Adoption(da2, DogBreeds.Pekingese);
 		
 		Adoptions.save(adop1);
 		Adoptions.save(adop2);
 		
 		Dog d1 =	TestUtils.createDogForTest("dogTest1", DogBreeds.Affenpinscher, Area.NORTH);
-		Dog d2 =	TestUtils.createDogForTest("dogTest2", DogBreeds.test1, Area.SOUTH);
-		Dog d3 =	TestUtils.createDogForTest("dogTest3", DogBreeds.test2, Area.NORTH);
+		Dog d2 =	TestUtils.createDogForTest("dogTest2", DogBreeds.Pomeranian, Area.SOUTH);
+		Dog d3 =	TestUtils.createDogForTest("dogTest3", DogBreeds.Pekingese, Area.NORTH);
 
 		Dogs.save(d1);
 		Dogs.save(d2);
