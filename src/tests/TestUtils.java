@@ -46,7 +46,7 @@ public class TestUtils {
 		URL url = new URL(Url);
 		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 		connection.setDoOutput(true);
-		connection.setRequestProperty("Content-Type", "application/json");
+		connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
 		connection.setRequestProperty("Accept", "application/json;charset=UTF-8");
 		connection.setConnectTimeout(500000);
 		connection.setReadTimeout(500000);

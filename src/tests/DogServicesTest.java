@@ -55,7 +55,7 @@ public class DogServicesTest {
 	 */
 	@Test
 	public void testlikedDogs() {
-		String url = "http://localhost:8080/GetPet/getPetServer/DogServices/likedDogs";
+		String url = "http://193.106.55.72/GetPet/getPetServer/DogServices/likedDogs";
 		
 		ArrayList<Dog> likedDogs = new ArrayList<>();
 
@@ -103,7 +103,7 @@ public class DogServicesTest {
 	 * */
 	@Test
 	public void testAdoptDog() {
-		String url = "http://localhost:8080/GetPet/getPetServer/DogServices/adoptDog";
+		String url = "http://193.106.55.72/GetPet/getPetServer/DogServices/adoptDog";
 		String response =null;
 		Dog dogAfterAdop = new Dog();
 		User userAfterAdoption = new User();
