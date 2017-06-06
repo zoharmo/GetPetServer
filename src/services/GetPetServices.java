@@ -82,10 +82,10 @@ public class GetPetServices {
 			User usr = objectMapper.readValue(in, User.class);
 			System.out.println("matchDogsToUser service. input: "+  objectMapper.writeValueAsString(usr));
 			
-		//	ArrayList<Dog> dogs =  Knn.run(usr);
+			ArrayList<Dog> dogs =  Knn.run(usr);
 			
 			// FOR TEST:
-			ArrayList<Dog> dogs = TestUtils.getDogsList();
+		//	ArrayList<Dog> dogs = TestUtils.getDogsList();
 			response = objectMapper.writeValueAsString(dogs);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
