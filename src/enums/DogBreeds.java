@@ -58,12 +58,12 @@ public enum DogBreeds {
 	Pekingese("פקינז","Pekingese"),
 	Poodle("פודל","Poodle"),
 	Maltese("מלטזי","Maltese"),
-	RhodesianRidgeback("רידג'בק רודזי", "RhodesianRidgeback"),
+	RhodesianRidgeback("רידג'בק רודזי", "RhodesianRidgeback");
 
-	@JsonIgnore
-	test1("בדיקה1","test1"),
-	@JsonIgnore
-	test2("בדיקה2","test2");
+	//@JsonIgnore
+	//test1("בדיקה1","test1"),
+	//@JsonIgnore
+	//test2("בדיקה2","test2");
 
 	private String hebrewName;
 	private String englishName;
