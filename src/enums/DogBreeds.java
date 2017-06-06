@@ -1,7 +1,6 @@
 package enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -46,19 +45,15 @@ public enum DogBreeds {
 	AustrianBlackAndTanHound("כלב ציד שחור וחום אוסטרי","AustrianBlackandTanHound"),
 	AustrianPinscher("פינצ'ר אוסטרי","AustrianPinscher"),
 	Azawakh("אזוואק","Azawakh"),
-	BelgianShepherdMalinois("מלינואה","Belgian Shepherd Dog (Malinois)"),
+	BelgianShepherdMalinois("מלינואה","BelgianShepherdMalinois"),
 	Pomeranian("פומרניאן","Pomeranian"),
-	LabradorRetriever("לברדור רטריוור","Labrador Retriever"),
-	BullTerrier("בול טרייר","Bull Terrier"),
-	CaneCorso("קאנה קורסו","Cane Corso"),
-	Chihuahua("צ'יוואווה","Chihuahua"),
-	Canaan("רועה כנעני","Canaan Dog"),
-	ChineseCrestedDog("סיני מצויץ","Chinese Crested Dog"),
-	CavalierKingCharlesSpaniel("קבליר קינג צ'ארלס","Cavalier King Charles Spaniel"),
-	GoldenRetriever("גולדן רטריוור","Golden Retriever"),
-	GermanShepherd("רועה גרמני","German Shepherd"),
 	LabradorRetriever("לברדור רטריוור","LabradorRetriever"),
 	BullTerrier("בול טרייר","BullTerrier"),
+	CaneCorso("קאנה קורסו","CaneCorso"),
+	Chihuahua("צ'יוואווה","Chihuahua"),
+	Canaan("רועה כנעני","Canaan"),
+	ChineseCrestedDog("סיני מצויץ","ChineseCrestedDog"),
+	CavalierKingCharlesSpaniel("קבליר קינג צ'ארלס","CavalierKingCharlesSpaniel"),
 	GoldenRetriever("גולדן רטריוור","GoldenRetriever"),
 	GermanShepherd("רועה גרמני","GermanShepherd"),
 	Basenji("בסנג'י","Basenji"),
@@ -68,10 +63,10 @@ public enum DogBreeds {
 	Pekingese("פקינז","Pekingese"),
 	Poodle("פודל","Poodle"),
 	Maltese("מלטזי","Maltese"),
-	JackRussellTerrier("ג'ק ראסל","Jack Russell Terrier"),
-	SiberianHusky("האסקי סיבירי","Siberian Husky"),
-	FrenchBulldog("בולדוג צרפתי","French Bulldog"),
-	WhiteShepherd("רועה שוויצרי","White Shepherd"),
+	JackRussellTerrier("ג'ק ראסל","JackRussellTerrier"),
+	SiberianHusky("האסקי סיבירי","SiberianHusky"),
+	FrenchBulldog("בולדוג צרפתי","FrenchBulldog"),
+	WhiteShepherd("רועה שוויצרי","WhiteShepherd"),
 	RhodesianRidgeback("רידג'בק רודזי", "RhodesianRidgeback");
 
 	//@JsonIgnore
