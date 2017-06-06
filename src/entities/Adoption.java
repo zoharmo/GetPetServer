@@ -25,11 +25,15 @@ public class Adoption {
 		this.normalizeAge = normalizeAge;
 	}
 	
-	public Adoption( DogAdopter dogAdopt, DogBreeds breed) throws Exception{
-		this.adopterDetailsBytes = dogAdopt.convertFeaturesToBinaryArray();
-		this.adoptionDogBreed = breed;
-		this.normalizeAge = Utils.normalize(dogAdopt.getAge());
-		
+	public Adoption( DogAdopter dogAdopt, DogBreeds breed) {
+		try {
+			this.adopterDetailsBytes = dogAdopt.convertFeaturesToBinaryArray();
+			this.adoptionDogBreed = breed;
+			this.normalizeAge = Utils.normalize(dogAdopt.getAge());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public ArrayList<Integer> getAdopterDetailsBytes() {
