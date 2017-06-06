@@ -53,7 +53,7 @@ public class Knn {
 		for(Map.Entry<Double,DogBreeds> nearest : knnDistance.entries()) {
 		    DogBreeds breed = nearest.getValue();
 		    dogsByBreed = Dogs.getDogByBreedAndArea(breed, user.getAdoptionDetails().getArea());
-		    System.out.println("Knn distance from " + breed + " is " + nearest.getKey() + ", match dogs: " + dogsByBreed.size());
+		    System.out.println("first round, Knn distance from " + breed + " is " + nearest.getKey() + ", match dogs: " + dogsByBreed.size());
 		    if(dogsByBreed.size() > 0 ){
 		    	k_counter++;
 		    	matchDogs.addAll(dogsByBreed);
@@ -62,6 +62,22 @@ public class Knn {
 		    	break;
 		    }
 		}
+		
+		if (matchDogs.size() < MIN_DOGS){
+			for(Map.Entry<Double,DogBreeds> nearest : knnDistance.entries()) {
+			    DogBreeds breed = nearest.getValue();
+			    dogsByBreed = Dogs.getDogByBreed(breed);
+			    System.out.println("seconde round, Knn distance from " + breed + " is " + nearest.getKey() + ", match dogs: " + dogsByBreed.size());
+			    if(dogsByBreed.size() > 0 ){
+			    	k_counter++;
+			    	matchDogs.addAll(dogsByBreed);
+			    }
+			    if ((k_counter == K_BREED) || (matchDogs.size() >= MIN_DOGS)){
+			    	break;
+			    }
+			}
+		}
+		
 		return matchDogs;
 		
 	}
