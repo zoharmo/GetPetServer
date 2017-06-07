@@ -14,6 +14,7 @@ public enum Colors {
 	BEZ("בז","BEZ","010000"),
 	DALMATIAN("דלמטי","DALMATIAN","100000");
 	
+	
 	private String hebrewName;
 	private String englishName;
 	private String knnValue;

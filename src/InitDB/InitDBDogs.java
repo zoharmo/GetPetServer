@@ -109,5 +109,107 @@ public class InitDBDogs {
 				Utils.encodeFileToBase64Binary("16"), "לברדור מעורב בצבע לבן בן שנתיים, חזק ומסיבי. כלב יפה וחתיך שזקוק למישהו עם הרבה כוח שיוכל להשתלט עליו ולהכניס לחייו קצת משמעת וגבולות",
 				"","","");
 		Dogs.save(dog16);
+		
+		Dog blue17 = new Dog("בלו", new Colors[]{Colors.BLACK,Colors.WHITE}, 0.25, Area.JERUSALEM, Gender.MALE, Size.MEDIUM, DogBreeds.AustralianShepherd, Utils.encodeFileToBase64Binary("17blue"), 
+							"הגור בלו חכם, שובב, אוהב לשחק, אנרגטי, נאמן וחברותי. יהיה החבר הכי טוב של מי שיאמץ אותו.  זהו גור עם אופי מאוד טוב ונוח, מסתדר עם כולם ויימסר לבית חם ואחראי",
+							"רינה", "שדרות אביי ורבא 1, מודיעין עילית ","052-4419906");
+		Dogs.save(blue17);
+		
+		Dog soda18 = new Dog("סודה", new Colors[]{Colors.BROWN,Colors.WHITE}, 0.5, Area.CENTER, Gender.FEMALE, Size.MEDIUM, DogBreeds.Canaan, Utils.encodeFileToBase64Binary("18soda"), 
+				"סודה גורה בת חצי שנה, עדינה, חכמה וחברותית, מחפשת משפחה חדשה שתוציא אותה מהכלוב.",
+				"אבי", " תל אביב","052-9556906");
+		Dogs.save(soda18);
+		
+		Dog marge19 = new Dog("מארג'", new Colors[]{Colors.BROWN}, 1.0, Area.CENTER, Gender.FEMALE, Size.SMALL, DogBreeds.MiniaturePinscher, Utils.encodeFileToBase64Binary("19marge"), 
+				"מארג' המתוקה היא כלבת פינצ'ר מעורבת, עדינה ומתוקה שאוהבת את כולם! היא בת כשנה, קטנטונת בגודלה . היא מסתדרת מעולה עם כלבים, אוהבת המון ליטופים ופינוקים. היא מחכה לכם בפנסיון באזור נתניה",
+				"מיטל", " נתניה ","050-2202938");
+		Dogs.save(marge19);
+		
+		Dog mohak20 = new Dog("מוהק", new Colors[]{Colors.BEZ}, 7.0, Area.CENTER, Gender.MALE, Size.SMALL, DogBreeds.Labrador, Utils.encodeFileToBase64Binary("20mohak"), 
+				"לברדור מתוק במיוחד שהגיע אלינו עם רגל שבורה, נותח וטופל וכעת מתרוצץ, מחלק אהבה, בלי שום בעיה",
+				"רות", "כפר סבא","054-2032978");
+		Dogs.save(mohak20);
+		
+		Dog tirena21 = new Dog("טירנה", new Colors[]{Colors.BLACK,Colors.WHITE}, 1.0, Area.SOUTH, Gender.FEMALE, Size.MEDIUM, DogBreeds.BorderCollie, Utils.encodeFileToBase64Binary("20mohak"), 
+				"נשיקות חיבוקים ועוד קצת נשיקות וחיבוקים, טירנה המהממת, בורד קולי מעורב פשוט מדהימה, זכייה בלוטו לכל משפחה שתבחר לאמץ את המושלמת לבית מלא באהבה",
+				"אלי", "בת ים","052-3007861");
+		Dogs.save(tirena21);
+		
+		Dog tarios22 = new Dog("טריוס", new Colors[]{Colors.BLACK}, 1.0, Area.CENTER, Gender.MALE, Size.MEDIUM, DogBreeds.Labrador, Utils.encodeFileToBase64Binary("22tarios"), 
+				"טריוס הוא כלב מדהים, ים כמות אינסופית של אהבה ורצון לחבק ולנשק :) טריוס נקשר לעץ וננטש כשהיה בן כמה חודשים. בילה כבר חצי שנה בהסגר בדרום הארץ.. ועכשיו הגיע אלינו וממש רוצה לצאת מהכלוב לבית חם ואוהב ! כלב אנרגטי ומלא שמחת חיים, שזקוק להרבה טיולים ותשומת לב. מסורס ומחוסן ! מחכה לבית המושלם בשבילו.",
+				"הילה", "רמת גן","050-7795477");
+		Dogs.save(tarios22);
+		
+		Dog tanto23 = new Dog("טנטו", new Colors[]{Colors.BEZ}, 1.0, Area.NORTH, Gender.MALE, Size.MEDIUM, DogBreeds.Chihuahua, Utils.encodeFileToBase64Binary("23tanto"), 
+				"טנטו הקטנטן הוא כלב צ'יוואווה מעורב מקסים ומתוק בן כשנה. יש לו מבט משגע והוא ידידותי להפליא. הוא מחכה לכם בפנסיון באזור חיפה",
+				"אלה", "חיפה","052-4549965");
+		Dogs.save(tanto23);
+		
+		Dog lili24 = new Dog("לילי", new Colors[]{Colors.WHITE}, 1.5, Area.NORTH, Gender.FEMALE, Size.BIG, DogBreeds.Primian, Utils.encodeFileToBase64Binary("24lili"), 
+				"לילי היפיפייה היא כלב פירנאית מעורבת בת כשנה, ביתית ומחונכת, שתשמח למצוא משפחה חמה",
+				"אדם", "חדרה","050-4478136");
+		Dogs.save(lili24);
+		
+		Dog chilli25 = new Dog("צ'ילי", new Colors[]{Colors.BROWN, Colors.BLACK}, 6.0, Area.NORTH, Gender.FEMALE, Size.BIG, DogBreeds.GermanShepherd, Utils.encodeFileToBase64Binary("25chilli"), 
+				"רועה גרמנית מעורבת ומתוקה, מחכה לבית חם ואוהב שיאמץ אותה",
+				"אסף", "חיפה","050-4478136");
+		Dogs.save(chilli25);
+		
+		Dog luee26 = new Dog("לואי", new Colors[]{Colors.BROWN}, 6.0, Area.NORTH, Gender.MALE, Size.SMALL, DogBreeds.Chihuahua, Utils.encodeFileToBase64Binary("26luee"), 
+				"היצור הקטן והזעיר הזה מחפש בית חם.שמו לואי. הוא בן 6, מחוסן, מסורס,מטופל. הוא חולץ מבית שלא התאים לו כלל  והוא מוכן לבית חדש.",
+				"איתי", "טבריה","052-6328875");
+		Dogs.save(luee26);
+		
+		Dog prilli27 = new Dog("פרילי", new Colors[]{Colors.BROWN, Colors.WHITE}, 3.0, Area.NORTH, Gender.MALE, Size.MEDIUM, DogBreeds.AriegePointer, Utils.encodeFileToBase64Binary("27prilli"), 
+				"כלבה מעוקרת ומטופלת מוכנה לבית חם. כלבה מקסימה ושקטה.",
+				"קרן", "קרית אתא","052-7864129");
+		Dogs.save(prilli27);
+		
+		Dog shuki28 = new Dog("שוקי", new Colors[]{Colors.BLACK}, 3.0, Area.NORTH, Gender.MALE, Size.BIG, DogBreeds.Chauchau, Utils.encodeFileToBase64Binary("28shuki"), 
+				"צ'או צ'או מעורב, מקסים וחברותי,דובי גדול שאוהב אנשים ומת על ליטופים",
+				"אתי", "עכו","058-7749653");
+		Dogs.save(shuki28);
+		
+		Dog lizi29 = new Dog("ליזי", new Colors[]{Colors.BLACK, Colors.WHITE}, 0.5, Area.CENTER, Gender.FEMALE, Size.MEDIUM, DogBreeds.JackRussellTerrier, Utils.encodeFileToBase64Binary("29lizi"), 
+				"ליזי היפה שלנו, גורונת מתוקונת, עדינה ושובבהמאוד, חכמה עוד יותר. גורה מעניינת וחברותית ומחכה לאימוץ",
+				"לירז", "הרצליה","054-5662099");
+		Dogs.save(lizi29);
+		
+		Dog jane30 = new Dog("ג'יין", new Colors[]{Colors.BLACK}, 0.25, Area.JERUSALEM, Gender.FEMALE, Size.SMALL, DogBreeds.FrenchBulldog, Utils.encodeFileToBase64Binary("30jane"), 
+				"ג'יין המתוקה ננטשה בכלביה. היא כלבונת מתוקונת להפליא, וחברותית,בולדוגית צרפתיה מעורבת שתישאר קטנטנה.",
+				"איילת", "ירושליים","050-9475528");
+		Dogs.save(jane30);
+		
+		Dog milwaukee31 = new Dog("מילווקי", new Colors[]{Colors.GREY}, 0.8, Area.CENTER, Gender.MALE, Size.MEDIUM, DogBreeds.Snocki, Utils.encodeFileToBase64Binary("31milwaukee"), 
+				"גור סלוקי מתוק ועדין נפש. נמצא בודד וגווע בוואדי, ניצל, שוקם והתאושש וכעת מחפש אומנה או בית מאמץ.",
+				"איתן", "חולון","050-5857739");
+		Dogs.save(milwaukee31);
+		
+		Dog muana32 = new Dog("מואנה", new Colors[]{Colors.BROWN, Colors.WHITE}, 0.15, Area.CENTER, Gender.FEMALE, Size.MEDIUM, DogBreeds.BelgianShepherd, Utils.encodeFileToBase64Binary("32muana"), 
+				"גורה מסוג רועה בלגי, תגדל להיות בינונית-גדולה. מקסימה, חברותית, לכולם ומתוקה מאוד",
+				"אורית", "ראשון לציון","050-9546328");
+		Dogs.save(muana32);
+		
+		Dog chace33 = new Dog("צ'ייס", new Colors[]{Colors.BROWN, Colors.BLACK}, 0.7, Area.CENTER, Gender.MALE, Size.BIG, DogBreeds.CaneCorso, Utils.encodeFileToBase64Binary("33chace"), 
+				"צ'ייס המהמם זקוק לאומנה בדחיפות! חזר לכלוב מבית לא ראוי,רזה ומפוחד, זקוק לבית מלא בחום ואהבה!",
+				"אליעד", "רעננה","052-4925563");
+		Dogs.save(chace33);
+		
+		Dog buba34 = new Dog("בובה", new Colors[]{Colors.GREY, Colors.BLACK}, 2.0, Area.CENTER, Gender.FEMALE, Size.BIG, DogBreeds.CaneCorso, Utils.encodeFileToBase64Binary("34buba"), 
+				"בובה בת שנתיים, מלאה בשמחת חיים, מקסימה וחברותית לכולם, מאוד אנרגטית!",
+				"אלון", "גבעתיים","052-7753821");
+		Dogs.save(buba34);
+		
+		Dog d35 = new Dog("דובי", new Colors[] {Colors.BEZ},4.0, Area.CENTER,Gender.MALE, Size.MEDIUM,DogBreeds.GoldenRetriever,
+				Utils.encodeFileToBase64Binary("1"),"דובי זקוק למישהו מיוחד, שיהיה שלו , לעד . שיקבל, ויכיל - ויהיה מוכן לתת לדובי להתאהב בו..."
+				+ " ויהיה מוכן להתמודד עם כלב תוקפן כלפי חוץ. כי כרגע, הוא מבלה את חייו בכלוב ..", "אורנית","ראשלצ" ,"050-934-4563");
+		Dogs.save(d35);
+
+		Dog d36 = new Dog("בלה", new Colors[] {Colors.BROWN},0.2, Area.NORTH,Gender.FEMALE, Size.SMALL,DogBreeds.RhodesianRidgeback, 
+				Utils.encodeFileToBase64Binary("2"),"מלאכית קטנה ומתוקה שרק רוצה לקבל חיבוקים ואהבה, תמסר לבית רגוע ואוהב", "תנו לחיות לחיות טבעון והעמקים", "טבעון","050-3199395");
+		Dogs.save(d36);
+
+		
+		
 	}
 }

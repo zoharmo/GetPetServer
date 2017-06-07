@@ -13,7 +13,7 @@ public class Utils {
 
 
    public static  String encodeFileToBase64Binary(String picName){
-		 File file =  new File("C:/Users/Mor Zohar/workspace/GetPet/src/data/pics/"+ picName + ".jpg");
+		 File file =  new File("src\\data\\pics\\"+ picName + ".jpg");
 
         String pic = null;
         try {

@@ -46,7 +46,9 @@ public enum DogBreeds {
 	AustrianPinscher("פינצ'ר אוסטרי","AustrianPinscher"),
 	Azawakh("אזוואק","Azawakh"),
 	BelgianShepherdMalinois("מלינואה","BelgianShepherdMalinois"),
+	BelgianShepherd("רועה בלגי","BelgianShepherd"),
 	Pomeranian("פומרניאן","Pomeranian"),
+	Labrador("לברדור","Labrador"),
 	LabradorRetriever("לברדור רטריוור","LabradorRetriever"),
 	BullTerrier("בול טרייר","BullTerrier"),
 	CaneCorso("קאנה קורסו","CaneCorso"),
@@ -67,7 +69,10 @@ public enum DogBreeds {
 	SiberianHusky("האסקי סיבירי","SiberianHusky"),
 	FrenchBulldog("בולדוג צרפתי","FrenchBulldog"),
 	WhiteShepherd("רועה שוויצרי","WhiteShepherd"),
-	RhodesianRidgeback("רידג'בק רודזי", "RhodesianRidgeback");
+	RhodesianRidgeback("רידג'בק רודזי", "RhodesianRidgeback"),
+	Primian("פרימיאני","Primian"),
+	Chauchau("צ'או צ'או", "Chauchau"),
+	Snocki("סנוקי","Snocki");
 
 	//@JsonIgnore
 	//test1("בדיקה1","test1"),
