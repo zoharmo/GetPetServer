@@ -27,7 +27,7 @@ public enum CommunityType {
 	}
 
 	 public String getEnglishName() {
-		return englishName;
+			return this.name();
 	}
 	 @JsonIgnore
 	 public String getKnnValue() {

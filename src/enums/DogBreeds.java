@@ -96,7 +96,7 @@ public enum DogBreeds {
 	}
 
 	 public String getEnglishName() {
-		return englishName;
+			return this.name();
 	}
 	 @JsonCreator
 	 public DogBreeds create(JsonNode json) {

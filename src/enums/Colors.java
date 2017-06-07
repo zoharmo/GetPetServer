@@ -34,7 +34,7 @@ public enum Colors {
 	}
 
 	 public String getEnglishName() {
-		return englishName;
+			return this.name();
 	}
 	 
 	 @JsonIgnore
