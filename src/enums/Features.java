@@ -36,7 +36,7 @@ public enum Features {
 	}
 
 	 public String getEnglishName() {
-		return englishName;
+			return this.name();
 	}
 	 @JsonIgnore
 	 public String getKnnValue() {

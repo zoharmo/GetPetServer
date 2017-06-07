@@ -34,7 +34,7 @@ public enum Size {
 	}
 
 	public String getEnglishName() {
-		return englishName;
+		return this.name();
 	}
 
 	public void setEnglishName(String englishName) {

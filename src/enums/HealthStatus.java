@@ -29,7 +29,7 @@ public enum HealthStatus {
 	}
 
 	 public String getEnglishName() {
-		return englishName;
+			return this.name();
 	}
 	 @JsonIgnore
 	 public String getKnnValue() {

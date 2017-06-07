@@ -30,7 +30,7 @@ public enum Animals {
 	}
 
 	 public String getEnglishName() {
-		return englishName;
+		return this.name();
 	}
 	 
 	 @JsonIgnore

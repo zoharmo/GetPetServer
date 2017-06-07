@@ -32,7 +32,7 @@ public enum Area {
 	}
 
 	 public String getEnglishName() {
-		return englishName;
+			return this.name();
 	}
 	 @JsonIgnore
 	 public String getKnnValue() {
