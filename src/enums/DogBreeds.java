@@ -70,9 +70,9 @@ public enum DogBreeds {
 	FrenchBulldog("בולדוג צרפתי","FrenchBulldog"),
 	WhiteShepherd("רועה שוויצרי","WhiteShepherd"),
 	RhodesianRidgeback("רידג'בק רודזי", "RhodesianRidgeback"),
-	Primian("פרימיאני","Primian"),
-	Chauchau("צ'או צ'או", "Chauchau"),
-	Snocki("סנוקי","Snocki");
+	GreatPyrenees("פרינאי","GreatPyrenees"),
+	ChowChow("צ'או צ'או", "ChowChow"),
+	Saluki("סלוקי","Saluki");
 
 	//@JsonIgnore
 	//test1("בדיקה1","test1"),
