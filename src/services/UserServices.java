@@ -43,9 +43,9 @@ public class UserServices {
 	}
 
 
-	@POST
+	@GET
     @Path("/signIn") 
-	@Consumes(MediaType.APPLICATION_JSON)
+	//@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
 	public String signIn(@QueryParam("userName")String userName, @QueryParam("password")String password) {
 		User user = Users.getUserByUserName(userName);
