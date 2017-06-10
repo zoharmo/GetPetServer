@@ -185,11 +185,13 @@ public class DogAdopter {
 	 
 	 public int listToKnnIntValue(Enum[] enums) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		 int featuresBits = 0;
-		 Method m = enums[0].getClass().getMethod("getKnnValue");
-		 for (Enum e : enums) {
-			 int s = Integer.parseInt((String)m.invoke(e), 2);
-			 featuresBits |= s;
-		 }		 
+		 if (enums.length > 0){
+			 Method m = enums[0].getClass().getMethod("getKnnValue");
+			 for (Enum e : enums) {
+				 int s = Integer.parseInt((String)m.invoke(e), 2);
+				 featuresBits |= s;
+			 }
+		 }
 		 return featuresBits;
 	 }
 	 private int toKnnIntValue(String s){
