@@ -1,4 +1,4 @@
-package InitDB;
+package data;
 
 import org.junit.Test;
 import crud.Adoptions;

@@ -1,9 +1,8 @@
-package InitDB;
+package data;
 
 import org.junit.Test;
 
 import crud.Dogs;
-import data.Utils;
 import entities.Dog;
 import enums.Area;
 import enums.Colors;
@@ -15,6 +14,7 @@ public class InitDBDogs {
 	@Test
 	public void addDogs() {	
 		
+
 		Dog dog1 = new Dog("פו", new Colors[]{Colors.BROWN}, 1.5, Area.CENTER, Gender.FEMALE, Size.SMALL, DogBreeds.Pomeranian,
 				Utils.encodeFileToBase64Binary("1"), "פו ,כלבת פומרניאן מלאכית ומיוחדת. פו חברותית ומסתדרת מצוין עם כלבים ובני אדם, בת כשנה וחצי ובגודל קטן. פו מעוקרת ומחוסנת מלא. נמצאת באומנה באיזור המרכז.",
 				"אורית", "ראשון לציון","050-9546328");
@@ -257,5 +257,17 @@ public class InitDBDogs {
 				"קיו הפודל המדליק הוא פודל גזעי.כלב קטן ושובב שאוהב לשחק.פודל מהמם שמחכה למשפחה המושלמת שתאמץ אותן. ",
 				"עדן", "רמת השרון","054-5439972");
 		Dogs.save(d46);
+		
+		Dog d47 = new Dog("דובי", new Colors[] {Colors.BEZ},4.0, Area.CENTER,Gender.MALE, Size.MEDIUM,DogBreeds.GoldenRetriever,
+				Utils.encodeFileToBase64Binary("1"),"דובי זקוק למישהו מיוחד, שיהיה שלו , לעד . שיקבל, ויכיל - ויהיה מוכן לתת לדובי להתאהב בו..."
+						+ " ויהיה מוכן להתמודד עם כלב תוקפן כלפי חוץ. כי כרגע, הוא מבלה את חייו בכלוב ..", "אורנית","ראשלצ" ,"050-934-4563");
+		Dogs.save(d47);
+
+		Dog d48 = new Dog("בלה", new Colors[] {Colors.BROWN},0.2, Area.NORTH,Gender.FEMALE, Size.SMALL,DogBreeds.RhodesianRidgeback, 
+		Utils.encodeFileToBase64Binary("2"),"מלאכית קטנה ומתוקה שרק רוצה לקבל חיבוקים ואהבה, תמסר לבית רגוע ואוהב", "תנו לחיות לחיות טבעון והעמקים", "טבעון","050-3199395");
+
+		Dogs.save(d48);
+
+
 	}
 }
