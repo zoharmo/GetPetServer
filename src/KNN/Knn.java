@@ -2,6 +2,7 @@ package KNN;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -36,7 +37,8 @@ public class Knn {
 			}
 			
 			knnResults.put(distance, adoption.getAdoptionDogBreed());
-		System.out.println("distance "+ distance + " for breed "+ adoption.getAdoptionDogBreed() );	
+			System.out.println("distance "+ distance + " for breed "+ adoption.getAdoptionDogBreed() );	
+			distance = 0.0;
 		}
 		
 		return   knnResults;
@@ -45,9 +47,8 @@ public class Knn {
 	public static ArrayList<Dog> run(User user) throws Exception {
 		System.out.println("run knn for user: " + user.getUserName());
 		Multimap <Double, DogBreeds> knnDistance = calcDatasetDistance(user.getAdoptionDetails());
-		ArrayList<Dog> matchDogs = new ArrayList<>();
-		ArrayList<Dog> dogsByBreed = new ArrayList<>();
-
+		HashMap<String, Dog> matchDogs = new HashMap<String, Dog>();
+		ArrayList<Dog> dogsByBreed = new ArrayList<Dog>();
 		int k_counter = 0;
 
 		for(Map.Entry<Double,DogBreeds> nearest : knnDistance.entries()) {
@@ -56,31 +57,35 @@ public class Knn {
 		    System.out.println("first round, Knn distance from " + breed + " is " + nearest.getKey() + ", match dogs: " + dogsByBreed.size());
 		    if(dogsByBreed.size() > 0 ){
 		    	k_counter++;
-		    	matchDogs.addAll(dogsByBreed);
+		    	for (Dog dog : dogsByBreed) {
+					matchDogs.put(dog.getId(), dog);
+				}
 		    }
 		    if ((k_counter == K_BREED) || (matchDogs.size() >= MIN_DOGS)){
 		    	break;
 		    }
 		}
 		
-		if (matchDogs.size() < MIN_DOGS){
+		if ((matchDogs.size() < MIN_DOGS ) && (k_counter >= K_BREED)){
 			for(Map.Entry<Double,DogBreeds> nearest : knnDistance.entries()) {
 			    DogBreeds breed = nearest.getValue();
 			    dogsByBreed = Dogs.getDogByBreed(breed);
 			    System.out.println("seconde round, Knn distance from " + breed + " is " + nearest.getKey() + ", match dogs: " + dogsByBreed.size());
 			    if(dogsByBreed.size() > 0 ){
 			    	k_counter++;
-			    	matchDogs.addAll(dogsByBreed);
+			    	for (Dog dog : dogsByBreed) {
+			    		if (!matchDogs.containsKey(dog.getId())) {
+			    			matchDogs.put(dog.getId(), dog);
+			    		}
+					}	
 			    }
+			    
 			    if ((k_counter == K_BREED) || (matchDogs.size() >= MIN_DOGS)){
 			    	break;
 			    }
 			}
 		}
 		
-		return matchDogs;
-		
+		return new ArrayList<Dog>(matchDogs.values());	
 	}
-	
-
 }
