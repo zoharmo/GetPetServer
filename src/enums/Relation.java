@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Relation {
 	CLEANING ("מכור לניקיון","CLEANING","001"),
-	CARING_TO_PROPERTY("אכפתיות לרכוש","CARING_TO_PROPERTY","010"),
-	LANDSCAPED_GARDEN("גינה מטופחת","LANDSCAPED_GARDEN","100");
+	CARING_TO_PROPERTY("אכפתי לרכוש","CARING_TO_PROPERTY","010"),
+	LANDSCAPED_GARDEN("שם דגש על גינה מטופחת","LANDSCAPED_GARDEN","100");
 
 	private String hebrewName;
 	private String englishName;
