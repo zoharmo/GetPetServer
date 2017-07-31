@@ -141,4 +141,12 @@ public class Dog {
 			this.phone = phone;
 		}
 		
+		@Override
+		public boolean equals(Object obj) {
+
+			Dog other = (Dog) obj;
+	
+			return id.equals(other.id);
+		}
+		
 }
