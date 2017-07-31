@@ -22,53 +22,52 @@ import entities.User;
 @Path("/UserServices")
 public class UserServices {
 	private Gson gson = new Gson();
-	private ObjectMapper objectMapper =  new ObjectMapper();
+	private ObjectMapper objectMapper = new ObjectMapper();
 
 	@POST
-    @Path("/signUp") 
+	@Path("/signUp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
 	public String signUp(InputStream incomingData) {
 		BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 		User usr = gson.fromJson(in, User.class);
 		String response = "OK";
-		try{
+		try {
 			Users.save(usr);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			response = "ERROR: " + e.getMessage();
 		}
 		System.out.println("response: " + response);
 		return response;
 	}
 
-
 	@GET
-    @Path("/signIn") 
-	//@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/signIn")
+	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public String signIn(@QueryParam("userName")String userName, @QueryParam("password")String password) {
+	public String signIn(@QueryParam("userName") String userName, @QueryParam("password") String password) {
 		User user = Users.getUserByUserName(userName);
 		String s;
-		if (user == null){
+		if (user == null) {
 			s = "ERROR: user name dont exist";
-		}else{
-			if (!user.getPassword().equals(password)){
+		} else {
+			if (!user.getPassword().equals(password)) {
 				s = "ERROR: wrong password";
-			}else{
-				try{
-					s = objectMapper.writeValueAsString(user); 
-				}catch (Exception e) {
-					System.out.println(e.getMessage());	
+			} else {
+				try {
+					s = objectMapper.writeValueAsString(user);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
 					s = e.getMessage();
 				}
 			}
 		}
-		return s;	
+		return s;
 	}
-	
+
 	@POST
-    @Path("/updateUser") 
+	@Path("/updateUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
 	public String updateUser(InputStream incomingData) {
@@ -76,49 +75,49 @@ public class UserServices {
 		User usr = gson.fromJson(in, User.class);
 		String response = "OK";
 
-		try{
+		try {
 			Users.update(usr);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			response = "ERROR: " + e.getMessage();
 		}
 		return response;
 	}
-	
+
 	@POST
-    @Path("/getUser") 
+	@Path("/getUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public String getUser(@QueryParam("userName")String userName) {
+	public String getUser(@QueryParam("userName") String userName) {
 		String response = null;
-		try{
+		try {
 			User usr = Users.getUserByUserName(userName);
-			if (usr == null){
-				response ="ERROR: dont exist user with userName " + usr.getUserName();
+			if (usr == null) {
+				response = "ERROR: dont exist user with userName " + usr.getUserName();
 			}
 			response = objectMapper.writeValueAsString(usr);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			response = "ERROR:" + e.getMessage();
 		}
 		return response;
 	}
-	
+
 	@GET
-    @Path("/checkUserName") 
-	//@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/checkUserName")
+	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=utf-8")
-	public String checkUserName(@QueryParam("userName")String userName) {
+	public String checkUserName(@QueryParam("userName") String userName) {
 		String response = "false";
-		try{
-			if( Users.doesUserNameExist(userName)){							
-				response ="true";
+		try {
+			if (Users.doesUserNameExist(userName)) {
+				response = "true";
 			}
-		}catch (Exception e) {
-			System.out.println(e.getMessage());		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			response = "ERROR:" + e.getMessage();
 		}
 		return response;
 	}
-	
+
 }

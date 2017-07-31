@@ -32,7 +32,7 @@ public class GetPetServicesTest {
 		String enumlist=null;
 		try {
 	
-			String url = "http://193.106.55.72/GetPet/getPetServer/GetPetServices/getEnum?enumName=Animals";
+			String url = "GetPet/getPetServer/GetPetServices/getEnum?enumName=Animals";
 
 			System.out.println("getEnum Test. url: " + url);
 			response = TestUtils.createRequest(url, null);	
@@ -49,12 +49,13 @@ public class GetPetServicesTest {
 	}
 	@Test
 	public void testMatchDogsToUser() {
-		String url = "http://193.106.55.72/GetPet/getPetServer/GetPetServices/matchDogsToUser";
+		String url = "GetPet/getPetServer/GetPetServices/matchDogsToUser";
 		String response = null;
 		User user = null;
 		try {
 			user = TestUtils.createUserForTest();
 			TestUtils.addDogAdopterForTest(user);
+	
 			System.out.println("matchDogsToUser Test. input: " + gson.toJson(user));
 			response = TestUtils.createRequest(url, gson.toJson(user));
 		} catch (Exception e) {

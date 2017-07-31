@@ -41,8 +41,15 @@ import enums.Relation;
 import enums.Size;
 
 public class TestUtils {
-
-	public static String createRequest(String Url, String input) throws Exception{
+	private static Boolean LocalServer = false;
+	public static String createRequest(String UrlSuffix, String input) throws Exception{
+		String Url = "http://193.106.55.72/";
+		
+		if (LocalServer) {
+			Url = "http://localhost:8080/";
+		}
+		
+		Url += UrlSuffix;
 		URL url = new URL(Url);
 		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 		connection.setDoOutput(true);
@@ -50,6 +57,9 @@ public class TestUtils {
 		connection.setRequestProperty("Accept", "application/json;charset=UTF-8");
 		connection.setConnectTimeout(500000);
 		connection.setReadTimeout(500000);
+		if (input ==null){
+			connection.setRequestMethod("GET");
+		}
 		OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
 		if(input != null){
 		out.write(input);}
@@ -71,15 +81,52 @@ public class TestUtils {
 		return s.toString();
 	}
 	
+	// HTTP GET request
+		static String sendGet(String urlSuffix) throws Exception {
+
+			String Url = "http://193.106.55.72/";
+			
+			if (LocalServer) {
+				Url = "http://localhost:8080/";
+			}
+			
+			Url += urlSuffix;
+			
+			URL obj = new URL(Url);
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+			// optional default is GET
+			con.setRequestMethod("GET");
+
+			//add request header
+		//	con.setRequestProperty("User-Agent", USER_AGENT);
+
+			int responseCode = con.getResponseCode();
+			System.out.println("\nSending 'GET' request to URL : " + Url);
+	//		System.out.println("Response Code : " + responseCode);
+
+			BufferedReader in = new BufferedReader(
+			        new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+
+		
+			return response.toString();
+		}
 	public static User createUserForTest() throws Exception{
-		User user = new User("morzo", "123", "mor@gmail.com", "mor","zohar","0508537588", null, null,null );
+		User user = new User("morzo", "123", "mor@gmail.com", "mor","zohar","0508537588", null, new ArrayList<Dog>(),null );
 		Users.removeByUserName(user.getUserName());
 		return user;
 	}
 	
 	public static Dog createDogForTest(String dogName){
 		Colors[] c = {Colors.BLACK,Colors.WHITE};
-		Dog dog = new Dog(dogName,c , 2.0, Area.SOUTH, Gender.FEMALE, Size.BIG, DogBreeds.Pomeranian, null, "very nice dog 1", "rave", "kirayt gat", "00");
+		Dog dog = new Dog(dogName,c , 2.0, Area.SOUTH, Gender.FEMALE, Size.BIG, DogBreeds.test, null, "very nice dog 1", "rave", "kirayt gat", "00");
 		Dogs.removeByDogName(dog.getName());
 		return dog;
 	}
@@ -116,7 +163,7 @@ public class TestUtils {
 		d1.setColor(c);
 		d1.setAge(5.5);
 		d1.setArea(Area.CENTER);
-		d1.setBreed(DogBreeds.Pomeranian);
+		d1.setBreed(DogBreeds.test);
 		d1.setOwenerName("לוקה מודריץ");
 		d1.setPhone("050485755");
 		d1.setDescription("פו ,כלבת פומרניאן מלאכית ומיוחדת. מלאני חברותית ומסתדרת מצוין עם כלבים ובני אדם, בת כשנה וחצי ובגודל קטן. מלאני מעוקרת ומחוסנת מלא ותמסר בסל אימוץ. נמצאת באומנה באיזור המרכז.");
@@ -131,7 +178,7 @@ public class TestUtils {
 		d2.setColor(b);
 		d2.setAge(0.4);
 		d2.setArea(Area.CENTER);
-		d2.setBreed(DogBreeds.BullTerrier);
+		d2.setBreed(DogBreeds.test);
 
 		d1.setOwenerName("כריטסיאנו רונלדו");
 		d1.setPhone("050485755");
@@ -148,7 +195,7 @@ public class TestUtils {
 		d5.setColor(s);
 		d5.setAge(2.5);
 		d5.setArea(Area.JERUSALEM);
-		d5.setBreed(DogBreeds.AnatolianShepherd);
+		d5.setBreed(DogBreeds.test);
 
 		d1.setOwenerName("מור זוהר");
 		d1.setPhone("050485755");
