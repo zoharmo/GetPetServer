@@ -123,7 +123,12 @@ public class User {
 	public void setLikedDogs(ArrayList<Dog> likedDogs) {
 		this.likedDogs = likedDogs;
 	}
-
+	public void addLikedDog(Dog likedDog) {
+		this.likedDogs.add(likedDog);
+	}
+	public void removeLikedDog(Dog likedDog) {
+		this.likedDogs.remove(likedDog);
+	}
 	public Dog getAdoptedDog() {
 		return adoptedDog;
 	}
