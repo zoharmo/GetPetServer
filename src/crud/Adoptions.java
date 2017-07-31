@@ -19,6 +19,11 @@ public class Adoptions {
 		mongoManager.mongoOperation.remove(query, Adoption.class);
 
 	}
+	public static Adoption selectByDogBreed(String dogBreed){
+		Query query = new Query(Criteria.where("adoptionDogBreed").is(dogBreed));
+		return mongoManager.mongoOperation.findOne(query, Adoption.class);
+
+	}
 	public static ArrayList<Adoption> getDataSet(){
 		ArrayList<Adoption> dataset = (ArrayList<Adoption>) mongoManager.mongoOperation.findAll(Adoption.class);
 		return dataset;
