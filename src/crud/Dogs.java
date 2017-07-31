@@ -38,6 +38,10 @@ public class Dogs {
 	public static void remove(Dog dog){
 		mongoManager.mongoOperation.remove(dog);
 	}
+	public static void removeById(String dogId){
+		Query query = new Query(Criteria.where("id").is(dogId));
+		mongoManager.mongoOperation.remove(query, Dog.class);
+	}
 	public static void removeByDogName(String name){
 		Query query = new Query(Criteria.where("name").is(name));
 		mongoManager.mongoOperation.remove(query, Dog.class);
